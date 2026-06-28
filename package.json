@@ -1,0 +1,22 @@
+{
+  "name": "luxury-jewelry-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Production-ready luxury jewelry ecommerce platform inspired by BeyondCarat",
+  "scripts": {
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "build:backend": "npm run build --workspace=backend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build": "npm run build:backend && npm run build:frontend",
+    "lint": "npm run lint --workspace=backend && npm run lint --workspace=frontend"
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

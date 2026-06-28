@@ -1,0 +1,401 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  CUSTOMER
+  GEMOLOGIST
+  ORDER_MANAGER
+  ADMIN
+}
+
+enum KycStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  NONE
+}
+
+enum Shape {
+  ROUND
+  OVAL
+  CUSHION
+  PEAR
+  EMERALD
+  PRINCESS
+  MARQUISE
+  RADIANT
+  HEART
+}
+
+enum MetalType {
+  YELLOW_GOLD_18K
+  WHITE_GOLD_18K
+  ROSE_GOLD_18K
+  PLATINUM
+}
+
+enum GemstoneStatus {
+  AVAILABLE
+  RESERVED
+  SOLD
+}
+
+enum OrderStatus {
+  PENDING_PAYMENT
+  PAID
+  PROCESSING
+  MANUFACTURING
+  QUALITY_CONTROL
+  SHIPPED
+  DELIVERED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  REFUNDED
+}
+
+enum PaymentGateway {
+  STRIPE
+  RAZORPAY
+  BANK_TRANSFER
+}
+
+enum AppointmentStatus {
+  SCHEDULED
+  COMPLETED
+  CANCELLED
+}
+
+enum AppointmentType {
+  VIRTUAL
+  IN_STORE
+}
+
+enum OtpType {
+  EMAIL_VERIFICATION
+  PHONE_VERIFICATION
+  PASSWORD_RESET
+  MFA
+}
+
+model User {
+  id               String        @id @default(uuid())
+  email            String        @unique
+  passwordHash     String?       // Nullable for OAuth logins
+  name             String
+  role             Role          @default(CUSTOMER)
+  isEmailVerified  Boolean       @default(false)
+  phone            String?       @unique
+  isPhoneVerified  Boolean       @default(false)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+  
+  profile          Profile?
+  otps             Otp[]
+  orders           Order[]
+  appointments     Appointment[] @relation("CustomerAppointments")
+  consultations    Appointment[] @relation("ConsultantAppointments")
+  reviews          Review[]
+  auditLogs        AuditLog[]
+  cart             Cart?
+  addresses        Address[]
+  wishlist         WishlistItem[]
+
+  @@index([email])
+}
+
+model Profile {
+  id             String    @id @default(uuid())
+  userId         String    @unique
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  avatarUrl      String?
+  kycStatus      KycStatus @default(NONE)
+  kycDocumentUrl String?
+  billingAddress Json?     // Structured JSON format for consistency
+  shippingAddress Json?
+}
+
+model Address {
+  id           String   @id @default(uuid())
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  name         String   // Address label, e.g. "Home", "Office"
+  type         String   @default("SHIPPING") // SHIPPING, BILLING
+  phone        String
+  addressLine1 String
+  addressLine2 String?
+  city         String
+  state        String
+  postalCode   String
+  country      String
+  isDefault    Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model Otp {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  codeHash  String   // SHA-256 hash of the generated OTP code for security
+  type      OtpType
+  expiresAt DateTime
+  verifiedAt DateTime?
+  createdAt DateTime @default(now())
+  
+  @@index([userId, expiresAt])
+}
+
+model Category {
+  id          String     @id @default(uuid())
+  name        String     @unique
+  slug        String     @unique
+  description String?
+  imageUrl    String?
+  parentId    String?
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryHierarchy")
+  products    Product[]
+}
+
+model Collection {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?
+  imageUrl    String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+model Coupon {
+  id                 String    @id @default(uuid())
+  code               String    @unique
+  discountType       String    // PERCENTAGE, FIXED
+  discountValue      Decimal   @db.Decimal(10, 2)
+  minOrderAmount     Decimal?  @db.Decimal(10, 2)
+  maxDiscountAmount  Decimal?  @db.Decimal(10, 2)
+  expiresAt          DateTime
+  isActive           Boolean   @default(true)
+  usageLimit         Int?
+  usageCount         Int       @default(0)
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@index([code])
+}
+
+model Product {
+  id             String                 @id @default(uuid())
+  name           String
+  slug           String                 @unique
+  sku            String                 @unique
+  description    String
+  basePrice      Decimal                @db.Decimal(12, 2) // High accuracy precision for luxury goods
+  isCustomizable Boolean                @default(false)
+  categoryId     String
+  category       Category               @relation(fields: [categoryId], references: [id])
+  status         String                 @default("DRAFT")  // DRAFT, ACTIVE, ARCHIVED
+  rating         Float                  @default(0.0)
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  
+  metalConfigs   ProductMetalConfig[]
+  variants       ProductVariant[]
+  reviews        Review[]
+  orderItems     OrderItem[]
+  cartItems      CartItem[]
+  collections    Collection[]
+  wishlistItems  WishlistItem[]
+
+  @@index([slug, sku])
+}
+
+model ProductMetalConfig {
+  id              String    @id @default(uuid())
+  productId       String
+  product         Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  metalType       MetalType
+  priceAdjustment Decimal   @db.Decimal(10, 2)
+  
+  @@unique([productId, metalType])
+}
+
+model ProductVariant {
+  id              String      @id @default(uuid())
+  productId       String
+  product         Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  sku             String      @unique
+  metalType       MetalType
+  ringSize        Decimal?    @db.Decimal(4, 2)
+  price           Decimal     @db.Decimal(12, 2)
+  stock           Int         @default(0)
+  imageUrls       String[]
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  
+  @@index([productId])
+}
+
+model Gemstone {
+  id                String         @id @default(uuid())
+  type              String         @default("DIAMOND") // DIAMOND, SAPPHIRE, EMERALD, etc.
+  shape             Shape
+  carat             Decimal        @db.Decimal(5, 3)  // Accurate carat measurement (e.g. 1.234)
+  color             String         // D, E, F, etc.
+  clarity           String         // FL, IF, VVS1, VS2, etc.
+  cut               String?        // EXCELLENT, VERY_GOOD
+  certificateNumber String?        @unique            // GIA or IGI Certificate ID
+  certificateUrl    String?
+  price             Decimal        @db.Decimal(12, 2)
+  status            GemstoneStatus @default(AVAILABLE)
+  createdAt         DateTime       @default(now())
+  
+  orderItems        OrderItem[]
+  cartItems         CartItem[]
+
+  @@index([type, shape, carat, price])
+}
+
+model Cart {
+  id        String     @id @default(uuid())
+  userId    String     @unique
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  items     CartItem[]
+}
+
+model CartItem {
+  id              String         @id @default(uuid())
+  cartId          String
+  cart            Cart           @relation(fields: [cartId], references: [id], onDelete: Cascade)
+  productId       String
+  product         Product        @relation(fields: [productId], references: [id])
+  quantity        Int            @default(1)
+  selectedMetal   MetalType?
+  selectedSize    Decimal?       @db.Decimal(4, 2)
+  customEngraving String?        @db.VarChar(100)   // Limit character length for engraving
+  selectedGemstoneId String?
+  selectedGemstone   Gemstone?   @relation(fields: [selectedGemstoneId], references: [id])
+}
+
+model WishlistItem {
+  id                 String     @id @default(uuid())
+  userId             String
+  user               User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  productId          String
+  product            Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
+  selectedMetal      MetalType?
+  selectedSize       Decimal?   @db.Decimal(4, 2)
+  selectedGemstoneId String?    // Gemstone if a customized item is wishlisted
+  createdAt          DateTime   @default(now())
+
+  @@index([userId])
+}
+
+model Order {
+  id              String        @id @default(uuid())
+  orderNumber     String        @unique // Human readable high-end code (e.g. BYD-2026-X8F9)
+  userId          String
+  user            User          @relation(fields: [userId], references: [id])
+  status          OrderStatus   @default(PENDING_PAYMENT)
+  totalAmount     Decimal       @db.Decimal(12, 2)
+  taxAmount       Decimal       @db.Decimal(10, 2)
+  shippingAmount  Decimal       @db.Decimal(8, 2)
+  shippingAddress Json          // Snapshot of shipping address during order creation
+  billingAddress  Json
+  trackingNumber  String?
+  carrier         String?       // "FedEx Priority Insured", "Brink's Securmark"
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  
+  items           OrderItem[]
+  payment         Payment?
+
+  @@index([userId, status])
+}
+
+model OrderItem {
+  id                 String     @id @default(uuid())
+  orderId            String
+  order              Order      @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId          String
+  product            Product    @relation(fields: [productId], references: [id])
+  quantity           Int
+  price              Decimal    @db.Decimal(12, 2) // Locked-in price at time of order
+  selectedMetal      MetalType?
+  selectedSize       Decimal?   @db.Decimal(4, 2)
+  customEngraving    String?
+  selectedGemstoneId String?
+  selectedGemstone   Gemstone?  @relation(fields: [selectedGemstoneId], references: [id])
+}
+
+model Payment {
+  id              String         @id @default(uuid())
+  orderId         String         @unique
+  order           Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  gateway         PaymentGateway
+  transactionId   String         @unique
+  amount          Decimal        @db.Decimal(12, 2)
+  currency        String         @default("USD")
+  status          PaymentStatus  @default(PENDING)
+  gatewayResponse Json?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model Appointment {
+  id             String            @id @default(uuid())
+  customerId     String
+  customer       User              @relation("CustomerAppointments", fields: [customerId], references: [id])
+  consultantId   String?           // Assigned Gemologist or Luxury Consultant
+  consultant     User?             @relation("ConsultantAppointments", fields: [consultantId], references: [id])
+  scheduledAt    DateTime
+  type           AppointmentType   @default(VIRTUAL)
+  status         AppointmentStatus @default(SCHEDULED)
+  notes          String?
+  meetingLink    String?           // Zoom, Google Meet link for virtual gemologist consult
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+}
+
+model Review {
+  id                 String   @id @default(uuid())
+  userId             String
+  user               User     @relation(fields: [userId], references: [id])
+  productId          String
+  product            Product  @relation(fields: [productId], references: [id])
+  rating             Int      @default(5)
+  comment            String?
+  isVerifiedPurchase Boolean  @default(false)
+  createdAt          DateTime @default(now())
+
+  @@unique([userId, productId])
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String   // e.g. "USER_LOGIN", "ADMIN_PRICE_UPDATE", "STRIPE_WEBHOOK_RECEIVED"
+  ipAddress String?
+  userAgent String?
+  details   Json?    // Detailed changes or payload metadata
+  createdAt DateTime @default(now())
+}

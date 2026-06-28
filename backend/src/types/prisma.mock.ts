@@ -1,0 +1,80 @@
+export enum Role {
+  CUSTOMER = 'CUSTOMER',
+  GEMOLOGIST = 'GEMOLOGIST',
+  ORDER_MANAGER = 'ORDER_MANAGER',
+  ADMIN = 'ADMIN',
+}
+
+export enum KycStatus {
+  PENDING = 'PENDING',
+  APPROVED = 'APPROVED',
+  REJECTED = 'REJECTED',
+  NONE = 'NONE',
+}
+
+export enum Shape {
+  ROUND = 'ROUND',
+  OVAL = 'OVAL',
+  CUSHION = 'CUSHION',
+  PEAR = 'PEAR',
+  EMERALD = 'EMERALD',
+  PRINCESS = 'PRINCESS',
+  MARQUISE = 'MARQUISE',
+  RADIANT = 'RADIANT',
+  HEART = 'HEART',
+}
+
+export enum MetalType {
+  YELLOW_GOLD_18K = 'YELLOW_GOLD_18K',
+  WHITE_GOLD_18K = 'WHITE_GOLD_18K',
+  ROSE_GOLD_18K = 'ROSE_GOLD_18K',
+  PLATINUM = 'PLATINUM',
+}
+
+export enum GemstoneStatus {
+  AVAILABLE = 'AVAILABLE',
+  RESERVED = 'RESERVED',
+  SOLD = 'SOLD',
+}
+
+export enum OrderStatus {
+  PENDING_PAYMENT = 'PENDING_PAYMENT',
+  PAID = 'PAID',
+  PROCESSING = 'PROCESSING',
+  MANUFACTURING = 'MANUFACTURING',
+  QUALITY_CONTROL = 'QUALITY_CONTROL',
+  SHIPPED = 'SHIPPED',
+  DELIVERED = 'DELIVERED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum PaymentStatus {
+  PENDING = 'PENDING',
+  SUCCESS = 'SUCCESS',
+  FAILED = 'FAILED',
+  REFUNDED = 'REFUNDED',
+}
+
+export enum PaymentGateway {
+  STRIPE = 'STRIPE',
+  RAZORPAY = 'RAZORPAY',
+  BANK_TRANSFER = 'BANK_TRANSFER',
+}
+
+export enum AppointmentStatus {
+  SCHEDULED = 'SCHEDULED',
+  COMPLETED = 'COMPLETED',
+  CANCELLED = 'CANCELLED',
+}
+
+export enum AppointmentType {
+  VIRTUAL = 'VIRTUAL',
+  IN_STORE = 'IN_STORE',
+}
+
+export enum OtpType {
+  EMAIL_VERIFICATION = 'EMAIL_VERIFICATION',
+  PHONE_VERIFICATION = 'PHONE_VERIFICATION',
+  PASSWORD_RESET = 'PASSWORD_RESET',
+  MFA = 'MFA',
+}
