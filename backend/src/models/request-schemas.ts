@@ -162,3 +162,38 @@ export const reviewSchema = z.object({
     comment: z.string().optional().nullable(),
   }),
 });
+
+export const brandSchema = z.object({
+  body: z.object({
+    name: z.string().min(1, 'Brand name is required'),
+    description: z.string().optional().nullable(),
+    imageUrl: z.string().url().optional().nullable(),
+  }),
+});
+
+export const blogSchema = z.object({
+  body: z.object({
+    title: z.string().min(1, 'Blog title is required'),
+    content: z.string().min(10, 'Blog content must be at least 10 characters long'),
+    summary: z.string().optional().nullable(),
+    imageUrl: z.string().url().optional().nullable(),
+    authorName: z.string().min(1, 'Author name is required'),
+    publish: z.boolean().default(false),
+  }),
+});
+
+export const newsletterSchema = z.object({
+  body: z.object({
+    email: z.string().email('Invalid email address'),
+  }),
+});
+
+export const contactSchema = z.object({
+  body: z.object({
+    name: z.string().min(1, 'Name is required'),
+    email: z.string().email('Invalid email address'),
+    subject: z.string().optional().nullable(),
+    message: z.string().min(5, 'Message must be at least 5 characters long'),
+  }),
+});
+

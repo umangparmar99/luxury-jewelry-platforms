@@ -151,6 +151,8 @@ export default function AdminPanelPage() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [variants, setVariants] = useState<InventoryVariant[]>([]);
   const [gemstones, setGemstones] = useState<InventoryGemstone[]>([]);
+  const [brands, setBrands] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<any[]>([]);
   const [analytics, setAnalytics] = useState<any>(null);
 
   // Statuses
@@ -197,6 +199,25 @@ export default function AdminPanelPage() {
     usageLimit: 100
   });
 
+  const [showBrandModal, setShowBrandModal] = useState<boolean>(false);
+  const [brandForm, setBrandForm] = useState({
+    id: '',
+    name: '',
+    description: '',
+    imageUrl: ''
+  });
+
+  const [showBlogModal, setShowBlogModal] = useState<boolean>(false);
+  const [blogForm, setBlogForm] = useState({
+    id: '',
+    title: '',
+    summary: '',
+    content: '',
+    authorName: '',
+    imageUrl: '',
+    publish: false
+  });
+
   // Settings mock toggle
   const [conciergePhone, setConciergePhone] = useState<string>('+1 (800) 555-VAULT');
   const [conciergeEmail, setConciergeEmail] = useState<string>('vault@beyondcarat.com');
@@ -229,7 +250,9 @@ export default function AdminPanelPage() {
         fetchCustomers(),
         fetchCoupons(),
         fetchReviews(),
-        fetchInventory()
+        fetchInventory(),
+        fetchBrands(),
+        fetchBlogsAdmin()
       ]);
     } catch (err) {
       console.error(err);
@@ -343,6 +366,29 @@ export default function AdminPanelPage() {
       const data = await res.json();
       setVariants(data.data.variants || []);
       setGemstones(data.data.gemstones || []);
+    }
+  };
+
+  const fetchBrands = async () => {
+    const res = await fetch(`${API_URL}/brands`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setBrands(data.data || []);
+    }
+  };
+
+  const fetchBlogsAdmin = async () => {
+    const res = await fetch(`${API_URL}/blogs/admin/list`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    });
+    if (res.ok) {
+      const data = await res.json();
+      setBlogs(data.data.blogs || []);
     }
   };
 
@@ -588,6 +634,107 @@ export default function AdminPanelPage() {
     }
   };
 
+  // --- Brand CRUD ---
+  const handleSaveBrand = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsActionLoading(true);
+    try {
+      const method = brandForm.id ? 'PATCH' : 'POST';
+      const url = brandForm.id ? `${API_URL}/brands/${brandForm.id}` : `${API_URL}/brands`;
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: brandForm.name,
+          description: brandForm.description || null,
+          imageUrl: brandForm.imageUrl || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=400&auto=format&fit=crop'
+        }),
+        credentials: 'include',
+      });
+      if (res.ok) {
+        showToast('success', 'Designer brand updated.');
+        setShowBrandModal(false);
+        await fetchBrands();
+      } else {
+        const d = await res.json();
+        showToast('error', d.message || 'Error saving brand.');
+      }
+    } catch {
+      showToast('error', 'Error saving brand.');
+    } finally {
+      setIsActionLoading(false);
+    }
+  };
+
+  const handleDeleteBrand = async (id: string) => {
+    if (!confirm('Are you sure you want to dissolve this brand? Products will remain unbranded.')) return;
+    try {
+      const res = await fetch(`${API_URL}/brands/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      });
+      if (res.ok) {
+        showToast('success', 'Brand dissolved.');
+        await fetchBrands();
+      }
+    } catch {
+      showToast('error', 'Error deleting brand.');
+    }
+  };
+
+  // --- Blog CRUD ---
+  const handleSaveBlog = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsActionLoading(true);
+    try {
+      const method = blogForm.id ? 'PATCH' : 'POST';
+      const url = blogForm.id ? `${API_URL}/blogs/admin/${blogForm.id}` : `${API_URL}/blogs/admin`;
+      const res = await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: blogForm.title,
+          content: blogForm.content,
+          summary: blogForm.summary || null,
+          authorName: blogForm.authorName,
+          imageUrl: blogForm.imageUrl || 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=600&auto=format&fit=crop',
+          publish: blogForm.publish
+        }),
+        credentials: 'include',
+      });
+      if (res.ok) {
+        showToast('success', 'Blog article updated.');
+        setShowBlogModal(false);
+        await fetchBlogsAdmin();
+      } else {
+        const d = await res.json();
+        showToast('error', d.message || 'Error saving article.');
+      }
+    } catch {
+      showToast('error', 'Error saving blog article.');
+    } finally {
+      setIsActionLoading(false);
+    }
+  };
+
+  const handleDeleteBlog = async (id: string) => {
+    if (!confirm('Permanently delete this journal manuscript?')) return;
+    try {
+      const res = await fetch(`${API_URL}/blogs/admin/${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      });
+      if (res.ok) {
+        showToast('success', 'Journal entry removed.');
+        await fetchBlogsAdmin();
+      }
+    } catch {
+      showToast('error', 'Error removing journal.');
+    }
+  };
+
   if (authLoading || isLoading) {
     return (
       <div className="min-h-screen bg-luxury-slate-dark flex items-center justify-center flex-col gap-3">
@@ -667,6 +814,14 @@ export default function AdminPanelPage() {
 
             <button onClick={() => setActiveTab('inventory')} className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-sm text-left text-xs uppercase tracking-wider transition-all ${activeTab === 'inventory' ? 'bg-luxury-gold-500 text-luxury-slate-dark font-bold' : 'text-luxury-gold-200/50 hover:bg-white/5 hover:text-white'}`}>
               <Box className="h-4 w-4 shrink-0" /> Inventory Ledger
+            </button>
+
+            <button onClick={() => setActiveTab('brands')} className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-sm text-left text-xs uppercase tracking-wider transition-all ${activeTab === 'brands' ? 'bg-luxury-gold-500 text-luxury-slate-dark font-bold' : 'text-luxury-gold-200/50 hover:bg-white/5 hover:text-white'}`}>
+              <Award className="h-4 w-4 shrink-0" /> Designer Brands
+            </button>
+
+            <button onClick={() => setActiveTab('blogs')} className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-sm text-left text-xs uppercase tracking-wider transition-all ${activeTab === 'blogs' ? 'bg-luxury-gold-500 text-luxury-slate-dark font-bold' : 'text-luxury-gold-200/50 hover:bg-white/5 hover:text-white'}`}>
+              <MessageSquare className="h-4 w-4 shrink-0" /> Vault Journals
             </button>
 
             <button onClick={() => setActiveTab('settings')} className={`flex items-center gap-3 w-full px-4 py-2.5 rounded-sm text-left text-xs uppercase tracking-wider transition-all ${activeTab === 'settings' ? 'bg-luxury-gold-500 text-luxury-slate-dark font-bold' : 'text-luxury-gold-200/50 hover:bg-white/5 hover:text-white'}`}>
@@ -1435,6 +1590,152 @@ export default function AdminPanelPage() {
                   </div>
                 )}
 
+                {/* --- 9.5 DESIGNER BRANDS TAB --- */}
+                {activeTab === 'brands' && (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h2 className="font-serif text-2xl font-bold tracking-wide">Designer Brands</h2>
+                        <p className="text-xs text-luxury-gold-200/50 uppercase tracking-widest mt-1">
+                          Configure designer labels and brand summaries
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setBrandForm({
+                            id: '',
+                            name: '',
+                            description: '',
+                            imageUrl: ''
+                          });
+                          setShowBrandModal(true);
+                        }}
+                        className="px-4 py-2 bg-luxury-gold-500 hover:bg-luxury-gold-600 text-luxury-slate-dark text-[10px] uppercase tracking-widest font-bold transition-all rounded-sm flex items-center gap-1"
+                      >
+                        <Plus className="h-3.5 w-3.5" /> Add Brand
+                      </button>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs font-sans">
+                      {brands.map((b) => (
+                        <div key={b.id} className="p-5 border border-luxury-gold-900/10 rounded-sm bg-luxury-slate/5 flex justify-between gap-4">
+                          <div className="space-y-2">
+                            <h3 className="font-serif font-bold text-white text-base">{b.name}</h3>
+                            <p className="text-[9px] font-mono text-luxury-gold-200/40 uppercase">SLUG: {b.slug}</p>
+                            <p className="text-xs text-luxury-gold-200/60 leading-relaxed mt-2">{b.description || 'No description provided.'}</p>
+                          </div>
+                          <div className="flex flex-col justify-between items-end shrink-0">
+                            {b.imageUrl ? (
+                              <div className="h-12 w-12 relative rounded overflow-hidden border border-luxury-gold-900/15">
+                                <img src={b.imageUrl} alt={b.name} className="object-cover h-full w-full" />
+                              </div>
+                            ) : (
+                              <div className="h-12 w-12 bg-white/5 border border-dashed border-luxury-gold-900/10 rounded" />
+                            )}
+                            <div className="flex gap-2 mt-4">
+                              <button
+                                onClick={() => {
+                                  setBrandForm({
+                                    id: b.id,
+                                    name: b.name,
+                                    description: b.description || '',
+                                    imageUrl: b.imageUrl || ''
+                                  });
+                                  setShowBrandModal(true);
+                                }}
+                                className="p-1 text-luxury-gold-400 hover:text-white"
+                              >
+                                <Edit className="h-4 w-4" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteBrand(b.id)}
+                                className="p-1 text-luxury-gold-300 hover:text-red-400"
+                              >
+                                <Trash2 className="h-4 w-4" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* --- 9.6 VAULT JOURNALS TAB --- */}
+                {activeTab === 'blogs' && (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <h2 className="font-serif text-2xl font-bold tracking-wide">Journal Manuscripts</h2>
+                        <p className="text-xs text-luxury-gold-200/50 uppercase tracking-widest mt-1">
+                          Draft, customize and publish luxury articles
+                        </p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          setBlogForm({
+                            id: '',
+                            title: '',
+                            summary: '',
+                            content: '',
+                            authorName: 'Elena Rostova, GIA GG',
+                            imageUrl: '',
+                            publish: true
+                          });
+                          setShowBlogModal(true);
+                        }}
+                        className="px-4 py-2 bg-luxury-gold-500 hover:bg-luxury-gold-600 text-luxury-slate-dark text-[10px] uppercase tracking-widest font-bold transition-all rounded-sm flex items-center gap-1"
+                      >
+                        <Plus className="h-3.5 w-3.5" /> Add Article
+                      </button>
+                    </div>
+
+                    <div className="space-y-4 font-sans text-xs">
+                      {blogs.map((p) => (
+                        <div key={p.id} className="p-5 border border-luxury-gold-900/10 rounded-sm bg-luxury-slate/5 flex justify-between items-start gap-4">
+                          <div className="space-y-2">
+                            <h4 className="font-serif font-bold text-white text-sm">{p.title}</h4>
+                            <p className="text-[9px] text-luxury-gold-200/30">
+                              by {p.authorName} ✦ {p.publishedAt ? `Published: ${new Date(p.publishedAt).toLocaleDateString()}` : 'DRAFT'}
+                            </p>
+                            <p className="text-xs text-luxury-gold-200/60 line-clamp-2 mt-1">{p.summary}</p>
+                          </div>
+                          <div className="flex flex-col justify-between items-end gap-4 shrink-0 font-sans">
+                            <span className={`text-[8px] uppercase tracking-widest font-bold px-2.5 py-0.5 rounded-full ${p.publishedAt ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400' : 'bg-white/10 border border-white/20 text-white/40'}`}>
+                              {p.publishedAt ? 'Live' : 'Draft'}
+                            </span>
+                            <div className="flex gap-2">
+                              <button
+                                onClick={() => {
+                                  setBlogForm({
+                                    id: p.id,
+                                    title: p.title,
+                                    summary: p.summary || '',
+                                    content: p.content,
+                                    authorName: p.authorName,
+                                    imageUrl: p.imageUrl || '',
+                                    publish: !!p.publishedAt
+                                  });
+                                  setShowBlogModal(true);
+                                }}
+                                className="p-1 text-luxury-gold-400 hover:text-white"
+                              >
+                                <Edit className="h-3.5 w-3.5" />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteBlog(p.id)}
+                                className="p-1 text-luxury-gold-300 hover:text-red-400"
+                              >
+                                <Trash2 className="h-3.5 w-3.5" />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {/* --- 10. STORE CONFIG SETTINGS TAB --- */}
                 {activeTab === 'settings' && (
                   <div className="space-y-6 max-w-lg font-sans text-xs">
@@ -1875,6 +2176,186 @@ export default function AdminPanelPage() {
         </div>
       )}
 
+      {/* BRAND CREATION MODAL */}
+      {showBrandModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 animate-fade-in text-xs font-sans">
+          <div className="bg-luxury-slate-dark border border-luxury-gold-500/30 p-6 rounded-sm w-full max-w-md relative">
+            <h3 className="font-serif text-xl font-bold tracking-wide text-white border-b border-luxury-gold-900/10 pb-3 mb-6">
+              {brandForm.id ? 'Edit Designer Brand' : 'Create Designer Brand'}
+            </h3>
+
+            <form onSubmit={handleSaveBrand} className="space-y-4">
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                  Brand Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={brandForm.name}
+                  onChange={(e) => setBrandForm(prev => ({ ...prev, name: e.target.value }))}
+                  placeholder="e.g. Cartier"
+                  className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                  Brand Description
+                </label>
+                <textarea
+                  rows={3}
+                  value={brandForm.description}
+                  onChange={(e) => setBrandForm(prev => ({ ...prev, description: e.target.value }))}
+                  placeholder="Write a summary of brand history, designers, origins..."
+                  className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                  Brand Image URL
+                </label>
+                <input
+                  type="text"
+                  value={brandForm.imageUrl}
+                  onChange={(e) => setBrandForm(prev => ({ ...prev, imageUrl: e.target.value }))}
+                  placeholder="https://images.unsplash.com/..."
+                  className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none font-mono"
+                />
+              </div>
+
+              <div className="flex justify-end gap-3 pt-4 border-t border-luxury-gold-900/10">
+                <button
+                  type="button"
+                  onClick={() => setShowBrandModal(false)}
+                  className="px-4 py-2 border border-luxury-gold-500/10 hover:border-luxury-gold-500/20 text-luxury-gold-400 text-[10px] font-sans uppercase tracking-widest font-bold transition-all rounded-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isActionLoading}
+                  className="px-5 py-2 bg-luxury-gold-500 hover:bg-luxury-gold-600 disabled:opacity-25 text-luxury-slate-dark text-[10px] font-sans uppercase tracking-widest font-bold transition-all rounded-sm"
+                >
+                  {isActionLoading ? 'Saving...' : 'Save Brand'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* BLOG CREATION MODAL */}
+      {showBlogModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 backdrop-blur-sm p-4 animate-fade-in text-xs font-sans">
+          <div className="bg-luxury-slate-dark border border-luxury-gold-500/30 p-6 rounded-sm w-full max-w-lg relative max-h-[90vh] overflow-y-auto">
+            <h3 className="font-serif text-xl font-bold tracking-wide text-white border-b border-luxury-gold-900/10 pb-3 mb-6">
+              {blogForm.id ? 'Edit Journal Manuscript' : 'Add Journal Manuscript'}
+            </h3>
+
+            <form onSubmit={handleSaveBlog} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                    Article Title
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={blogForm.title}
+                    onChange={(e) => setBlogForm(prev => ({ ...prev, title: e.target.value }))}
+                    placeholder="Art of ethically sourcing diamonds"
+                    className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                    Author Name
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={blogForm.authorName}
+                    onChange={(e) => setBlogForm(prev => ({ ...prev, authorName: e.target.value }))}
+                    placeholder="Elena Rostova, GIA GG"
+                    className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                  Article Summary
+                </label>
+                <textarea
+                  rows={2}
+                  required
+                  value={blogForm.summary}
+                  onChange={(e) => setBlogForm(prev => ({ ...prev, summary: e.target.value }))}
+                  placeholder="Provide a brief summary for grid previews..."
+                  className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                  Article Content (Markdown / Text)
+                </label>
+                <textarea
+                  rows={6}
+                  required
+                  value={blogForm.content}
+                  onChange={(e) => setBlogForm(prev => ({ ...prev, content: e.target.value }))}
+                  placeholder="Write the full editorial content..."
+                  className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none font-sans"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 items-center">
+                <div>
+                  <label className="block text-[10px] uppercase tracking-wider text-luxury-gold-200/40 mb-1">
+                    Banner Image URL
+                  </label>
+                  <input
+                    type="text"
+                    value={blogForm.imageUrl}
+                    onChange={(e) => setBlogForm(prev => ({ ...prev, imageUrl: e.target.value }))}
+                    placeholder="https://images.unsplash.com/..."
+                    className="w-full bg-luxury-slate border border-luxury-gold-900/10 rounded-sm py-2 px-3 text-xs text-white focus:border-luxury-gold-500/40 outline-none font-mono"
+                  />
+                </div>
+                <label className="flex items-center gap-2 cursor-pointer pt-6 select-none">
+                  <input
+                    type="checkbox"
+                    checked={blogForm.publish}
+                    onChange={(e) => setBlogForm(prev => ({ ...prev, publish: e.target.checked }))}
+                    className="rounded bg-luxury-slate border-luxury-gold-900/20 text-luxury-gold-500 focus:ring-0 focus:ring-offset-0 h-4 w-4"
+                  />
+                  <span className="text-xs text-luxury-gold-200/60 font-sans">Publish article instantly</span>
+                </label>
+              </div>
+
+              <div className="flex justify-end gap-3 pt-4 border-t border-luxury-gold-900/10">
+                <button
+                  type="button"
+                  onClick={() => setShowBlogModal(false)}
+                  className="px-4 py-2 border border-luxury-gold-500/10 hover:border-luxury-gold-500/20 text-luxury-gold-400 text-[10px] font-sans uppercase tracking-widest font-bold transition-all rounded-sm"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={isActionLoading}
+                  className="px-5 py-2 bg-luxury-gold-500 hover:bg-luxury-gold-600 disabled:opacity-25 text-luxury-slate-dark text-[10px] font-sans uppercase tracking-widest font-bold transition-all rounded-sm"
+                >
+                  {isActionLoading ? 'Saving...' : 'Save Article'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

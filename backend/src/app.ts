@@ -7,6 +7,10 @@ import rateLimit from 'express-rate-limit';
 import authRouter from './routes/auth.routes';
 import catalogRouter from './routes/catalog.routes';
 import checkoutRouter from './routes/checkout.routes';
+import brandRouter from './routes/brand.routes';
+import blogRouter from './routes/blog.routes';
+import newsletterRouter from './routes/newsletter.routes';
+import contactRouter from './routes/contact.routes';
 import { errorHandler } from './middlewares/error.middleware';
 
 dotenv.config();
@@ -72,6 +76,10 @@ app.get('/health', (_req: Request, res: Response) => {
 app.use('/api/v1/auth', authRateLimiter, authRouter);
 app.use('/api/v1/catalog', catalogRouter);
 app.use('/api/v1/checkout', checkoutRouter);
+app.use('/api/v1/brands', brandRouter);
+app.use('/api/v1/blogs', blogRouter);
+app.use('/api/v1/newsletter', newsletterRouter);
+app.use('/api/v1/contact', contactRouter);
 
 // Fallback route 404
 app.use((req: Request, res: Response) => {

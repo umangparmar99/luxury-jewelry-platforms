@@ -13,6 +13,8 @@ model User {
   passwordHash     String?       // Nullable for OAuth logins
   name             String
   role             String        @default("CUSTOMER") // CUSTOMER, GEMOLOGIST, ORDER_MANAGER, ADMIN
+  roleId           String?
+  roleRel          Role?         @relation(fields: [roleId], references: [id], onDelete: SetNull)
   isEmailVerified  Boolean       @default(false)
   phone            String?       @unique
   isPhoneVerified  Boolean       @default(false)
@@ -33,6 +35,13 @@ model User {
   @@index([email])
 }
 
+model Role {
+  id        String   @id @default(uuid())
+  name      String   @unique // CUSTOMER, GEMOLOGIST, ORDER_MANAGER, ADMIN
+  users     User[]
+  createdAt DateTime @default(now())
+}
+
 model Profile {
   id             String    @id @default(uuid())
   userId         String    @unique
@@ -40,8 +49,8 @@ model Profile {
   avatarUrl      String?
   kycStatus      String    @default("NONE") // PENDING, APPROVED, REJECTED, NONE
   kycDocumentUrl String?
-  billingAddress String?   // Serialized JSON string for SQLite compatibility
-  shippingAddress String?  // Serialized JSON string for SQLite compatibility
+  billingAddress Json?     // JSON format for billing addresses
+  shippingAddress Json?    // JSON format for shipping addresses
 }
 
 model Address {
@@ -81,19 +90,32 @@ model Category {
   id          String     @id @default(uuid())
   name        String     @unique
   slug        String     @unique
-  description String?
+  description String?    
   imageUrl    String?
   parentId    String?
-  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  parent      Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: Restrict, onUpdate: Restrict)
   children    Category[] @relation("CategoryHierarchy")
   products    Product[]
+}
+
+model Brand {
+  id          String    @id @default(uuid())
+  name        String    @unique
+  slug        String    @unique
+  description String?   
+  imageUrl    String?
+  products    Product[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([slug])
 }
 
 model Collection {
   id          String    @id @default(uuid())
   name        String    @unique
   slug        String    @unique
-  description String?
+  description String?   
   imageUrl    String?
   products    Product[]
   createdAt   DateTime  @default(now())
@@ -106,9 +128,9 @@ model Coupon {
   id                 String    @id @default(uuid())
   code               String    @unique
   discountType       String    // PERCENTAGE, FIXED
-  discountValue      Decimal
-  minOrderAmount     Decimal?
-  maxDiscountAmount  Decimal?
+  discountValue      Decimal   
+  minOrderAmount     Decimal?  
+  maxDiscountAmount  Decimal?  
   expiresAt          DateTime
   isActive           Boolean   @default(true)
   usageLimit         Int?
@@ -124,11 +146,13 @@ model Product {
   name           String
   slug           String                 @unique
   sku            String                 @unique
-  description    String
-  basePrice      Decimal
+  description    String                 
+  basePrice      Decimal                
   isCustomizable Boolean                @default(false)
   categoryId     String
   category       Category               @relation(fields: [categoryId], references: [id])
+  brandId        String?
+  brand          Brand?                 @relation(fields: [brandId], references: [id], onDelete: SetNull)
   status         String                 @default("DRAFT")  // DRAFT, ACTIVE, ARCHIVED
   rating         Float                  @default(0.0)
   createdAt      DateTime               @default(now())
@@ -141,8 +165,21 @@ model Product {
   cartItems      CartItem[]
   collections    Collection[]
   wishlistItems  WishlistItem[]
+  images         ProductImage[]
 
   @@index([slug, sku])
+}
+
+model ProductImage {
+  id          String   @id @default(uuid())
+  productId   String
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  url         String   
+  altText     String?
+  isHero      Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([productId])
 }
 
 model ProductMetalConfig {
@@ -150,7 +187,7 @@ model ProductMetalConfig {
   productId       String
   product         Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
   metalType       String    // YELLOW_GOLD_18K, WHITE_GOLD_18K, ROSE_GOLD_18K, PLATINUM
-  priceAdjustment Decimal
+  priceAdjustment Decimal   
   
   @@unique([productId, metalType])
 }
@@ -161,10 +198,10 @@ model ProductVariant {
   product         Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
   sku             String      @unique
   metalType       String      // YELLOW_GOLD_18K, WHITE_GOLD_18K, ROSE_GOLD_18K, PLATINUM
-  ringSize        Decimal?
-  price           Decimal
+  ringSize        Decimal?    
+  price           Decimal     
   stock           Int         @default(0)
-  imageUrls       String      // JSON stringified array of URLs for SQLite compatibility
+  imageUrls       String       // JSON stringified array of URLs
   createdAt       DateTime    @default(now())
   updatedAt       DateTime    @updatedAt
   
@@ -175,13 +212,13 @@ model Gemstone {
   id                String         @id @default(uuid())
   type              String         @default("DIAMOND") // DIAMOND, SAPPHIRE, EMERALD, etc.
   shape             String         // ROUND, OVAL, CUSHION, PEAR, EMERALD, PRINCESS, MARQUISE, RADIANT, HEART
-  carat             Decimal
+  carat             Decimal        
   color             String         // D, E, F, etc.
   clarity           String         // FL, IF, VVS1, VS2, etc.
   cut               String?        // EXCELLENT, VERY_GOOD
   certificateNumber String?        @unique            // GIA or IGI Certificate ID
-  certificateUrl    String?
-  price             Decimal
+  certificateUrl    String?        
+  price             Decimal        
   status            String         @default("AVAILABLE") // AVAILABLE, RESERVED, SOLD
   createdAt         DateTime       @default(now())
   
@@ -208,10 +245,10 @@ model CartItem {
   product         Product        @relation(fields: [productId], references: [id])
   quantity        Int            @default(1)
   selectedMetal   String?
-  selectedSize    Decimal?
-  customEngraving String?
+  selectedSize    Decimal?       
+  customEngraving String?        
   selectedGemstoneId String?
-  selectedGemstone   Gemstone?   @relation(fields: [selectedGemstoneId], references: [id])
+  selectedGemstone   Gemstone?   @relation(fields: [selectedGemstoneId], references: [id], onDelete: SetNull)
 
   @@index([cartId])
   @@index([productId])
@@ -224,8 +261,8 @@ model WishlistItem {
   productId          String
   product            Product    @relation(fields: [productId], references: [id], onDelete: Cascade)
   selectedMetal      String?
-  selectedSize       Decimal?
-  selectedGemstoneId String?    // Gemstone if a customized item is wishlisted
+  selectedSize       Decimal?   
+  selectedGemstoneId String?
   createdAt          DateTime   @default(now())
 
   @@index([userId])
@@ -233,17 +270,17 @@ model WishlistItem {
 
 model Order {
   id              String        @id @default(uuid())
-  orderNumber     String        @unique // Human readable high-end code (e.g. BYD-2026-X8F9)
+  orderNumber     String        @unique // Human readable high-end code
   userId          String
   user            User          @relation(fields: [userId], references: [id])
-  status          String        @default("PENDING_PAYMENT") // PENDING_PAYMENT, PAID, PROCESSING, MANUFACTURING, etc.
-  totalAmount     Decimal
-  taxAmount       Decimal
-  shippingAmount  Decimal
-  shippingAddress String        // Serialized JSON shipping address for SQLite compatibility
-  billingAddress  String        // Serialized JSON billing address for SQLite compatibility
+  status          String        @default("PENDING_PAYMENT")
+  totalAmount     Decimal       
+  taxAmount       Decimal       
+  shippingAmount  Decimal       
+  shippingAddress Json          // Serialized shipping address Json
+  billingAddress  Json          // Serialized billing address Json
   trackingNumber  String?
-  carrier         String?       // "FedEx Priority Insured", "Brink's Securmark"
+  carrier         String?
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   
@@ -260,12 +297,12 @@ model OrderItem {
   productId          String
   product            Product    @relation(fields: [productId], references: [id])
   quantity           Int
-  price              Decimal
+  price              Decimal    
   selectedMetal      String?
-  selectedSize       Decimal?
+  selectedSize       Decimal?   
   customEngraving    String?
   selectedGemstoneId String?
-  selectedGemstone   Gemstone?  @relation(fields: [selectedGemstoneId], references: [id])
+  selectedGemstone   Gemstone?  @relation(fields: [selectedGemstoneId], references: [id], onDelete: SetNull)
 
   @@index([orderId])
   @@index([productId])
@@ -277,10 +314,10 @@ model Payment {
   order           Order          @relation(fields: [orderId], references: [id], onDelete: Cascade)
   gateway         String         // STRIPE, RAZORPAY, BANK_TRANSFER
   transactionId   String         @unique
-  amount          Decimal
+  amount          Decimal        
   currency        String         @default("USD")
   status          String         @default("PENDING") // PENDING, SUCCESS, FAILED, REFUNDED
-  gatewayResponse String?        // Serialized JSON string for SQLite compatibility
+  gatewayResponse Json?          // Gateway details Json
   createdAt       DateTime       @default(now())
   updatedAt       DateTime       @updatedAt
 }
@@ -294,8 +331,8 @@ model Appointment {
   scheduledAt    DateTime
   type           String            @default("VIRTUAL") // VIRTUAL, IN_STORE
   status         String            @default("SCHEDULED") // SCHEDULED, COMPLETED, CANCELLED
-  notes          String?
-  meetingLink    String?           // Zoom, Google Meet link for virtual gemologist consult
+  notes          String?           
+  meetingLink    String?
   createdAt      DateTime          @default(now())
   updatedAt      DateTime          @updatedAt
 
@@ -310,7 +347,7 @@ model Review {
   productId          String
   product            Product  @relation(fields: [productId], references: [id])
   rating             Int      @default(5)
-  comment            String?
+  comment            String?  
   isVerifiedPurchase Boolean  @default(false)
   createdAt          DateTime @default(now())
 
@@ -321,9 +358,41 @@ model AuditLog {
   id        String   @id @default(uuid())
   userId    String?
   user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
-  action    String   // e.g. "USER_LOGIN", "ADMIN_PRICE_UPDATE", "STRIPE_WEBHOOK_RECEIVED"
+  action    String
   ipAddress String?
   userAgent String?
-  details   String?  // Serialized JSON details for SQLite compatibility
+  details   Json?
+  createdAt DateTime @default(now())
+}
+
+model Blog {
+  id          String    @id @default(uuid())
+  title       String
+  slug        String    @unique
+  content     String    
+  summary     String?   
+  imageUrl    String?
+  authorName  String
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([slug])
+}
+
+model Newsletter {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model ContactMessage {
+  id        String   @id @default(uuid())
+  name      String
+  email     String
+  subject   String?
+  message   String   
+  isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
 }
