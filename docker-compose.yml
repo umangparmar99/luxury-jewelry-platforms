@@ -43,6 +43,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
     container_name: luxury-jewelry-frontend
     restart: always
     ports:

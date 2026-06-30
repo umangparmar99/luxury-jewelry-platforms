@@ -5,20 +5,15 @@ COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN npx prisma generate
+RUN npm run build
 
 # Stage 2: Runner
 FROM node:18-alpine
 WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY --from=builder /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder /app/node_modules/@prisma/client ./node_modules/@prisma/client
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/src ./src
-COPY --from=builder /app/tsconfig.json ./tsconfig.json
+COPY --from=builder /app ./
 
 EXPOSE 5000
 ENV NODE_ENV=production
 
-# Run database migrations and start server
-CMD ["npx", "ts-node", "src/server.ts"]
+# Run database migrations (db push) and start server
+CMD ["sh", "-c", "npx prisma db push && node dist/server.js"]
