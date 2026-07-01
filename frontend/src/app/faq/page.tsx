@@ -6,11 +6,11 @@ import { ChevronDown, HelpCircle, PhoneCall, Award } from 'lucide-react';
 import Link from 'next/link';
 
 const S = {
-  void: '#060812',
-  rose: '#D4706A',
-  cream: '#F0DFC8',
+  void: '#0b2626',
+  rose: '#d4af37',
+  cream: '#fef8f1',
   creamDim: 'rgba(219,191,136,0.6)',
-  borderFaint: '1px solid rgba(212,112,106,0.1)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.1)',
 };
 
 const faqs = [
@@ -132,7 +132,7 @@ export default function FaqPage() {
                           >
                             <div
                               className="px-6 pb-5 pt-1 text-xs leading-relaxed"
-                              style={{ color: 'rgba(219,191,136,0.55)', borderTop: '1px solid rgba(212,112,106,0.04)' }}
+                              style={{ color: 'rgba(219,191,136,0.55)', borderTop: '1px solid rgba(212, 175, 55,0.04)' }}
                             >
                               {item.a}
                             </div>
@@ -151,7 +151,7 @@ export default function FaqPage() {
         <div
           className="mt-20 p-8 rounded-sm text-center space-y-6"
           style={{
-            background: 'linear-gradient(135deg, rgba(13,18,40,0.7) 0%, rgba(6,8,18,0.95) 100%)',
+            background: 'linear-gradient(135deg, rgba(13,18,40,0.7) 0%, rgba(11, 38, 38,0.95) 100%)',
             border: S.borderFaint
           }}
         >

@@ -3,11 +3,11 @@
 import React from 'react';
 
 const S = {
-  void: '#060812',
-  rose: '#D4706A',
-  cream: '#F0DFC8',
+  void: '#0b2626',
+  rose: '#d4af37',
+  cream: '#fef8f1',
   creamDim: 'rgba(219,191,136,0.6)',
-  borderFaint: '1px solid rgba(212,112,106,0.1)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.1)',
 };
 
 export default function PrivacyPolicyPage() {

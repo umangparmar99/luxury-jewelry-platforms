@@ -47,7 +47,7 @@ function LoginPageContent() {
   return (
     <div
       className="w-full min-h-[90vh] flex items-center justify-center py-16 px-4 relative overflow-hidden font-sans"
-      style={{ backgroundColor: '#060812' }}
+      style={{ backgroundColor: '#0b2626' }}
     >
       {/* Background orbs */}
       <div className="orb orb-rose  absolute top-1/4  left-1/4  w-[500px] h-[500px] opacity-20" />
@@ -65,23 +65,23 @@ function LoginPageContent() {
           style={{
             background: 'rgba(10,14,30,0.85)',
             backdropFilter: 'blur(30px)',
-            border: '1px solid rgba(212,112,106,0.15)',
-            boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(212,112,106,0.05)',
+            border: '1px solid rgba(212, 175, 55,0.15)',
+            boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(212, 175, 55,0.05)',
           }}
         >
           {/* Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
-              style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)' }}>
-              <Gem className="h-3 w-3" style={{ color: '#D4706A' }} />
-              <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#E68C72' }}>
+              style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)' }}>
+              <Gem className="h-3 w-3" style={{ color: '#d4af37' }} />
+              <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#dfbe58' }}>
                 Welcome Back
               </span>
             </div>
             <h1
               className="font-serif text-3xl font-light mb-2"
               style={{
-                background: 'linear-gradient(135deg, #F5E6D0 0%, #DBBF88 50%, #D4706A 100%)',
+                background: 'linear-gradient(135deg, #fef8f1 0%, #DBBF88 50%, #d4af37 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -109,7 +109,7 @@ function LoginPageContent() {
             <motion.div
               initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
               className="mb-5 p-4 rounded-sm flex items-start gap-2.5 text-xs"
-              style={{ background: 'rgba(212,112,106,0.1)', border: '1px solid rgba(212,112,106,0.25)', color: '#E68C72' }}
+              style={{ background: 'rgba(212, 175, 55,0.1)', border: '1px solid rgba(212, 175, 55,0.25)', color: '#dfbe58' }}
             >
               <Sparkles className="h-4 w-4 shrink-0 mt-0.5" />
               <span>{success}</span>
@@ -119,11 +119,11 @@ function LoginPageContent() {
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
             {/* Email */}
             <div>
-              <label className="block font-sans text-[10px] uppercase tracking-widest font-semibold mb-2" style={{ color: '#D4706A' }}>
+              <label className="block font-sans text-[10px] uppercase tracking-widest font-semibold mb-2" style={{ color: '#d4af37' }}>
                 Email Address
               </label>
               <div className="relative">
-                <Mail className="absolute left-3.5 top-3.5 h-4 w-4" style={{ color: 'rgba(212,112,106,0.35)' }} />
+                <Mail className="absolute left-3.5 top-3.5 h-4 w-4" style={{ color: 'rgba(212, 175, 55,0.35)' }} />
                 <input
                   type="email" required
                   placeholder="collector@beyondcarat.com"
@@ -131,12 +131,12 @@ function LoginPageContent() {
                   onChange={e => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 rounded-sm font-sans text-xs outline-none transition-all duration-300"
                   style={{
-                    background: 'rgba(6,8,18,0.7)',
-                    border: '1px solid rgba(212,112,106,0.12)',
-                    color: '#F0DFC8',
+                    background: 'rgba(11, 38, 38,0.7)',
+                    border: '1px solid rgba(212, 175, 55,0.12)',
+                    color: '#fef8f1',
                   }}
-                  onFocus={e  => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.45)')}
-                  onBlur={e   => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.12)')}
+                  onFocus={e  => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.45)')}
+                  onBlur={e   => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.12)')}
                 />
               </div>
             </div>
@@ -144,15 +144,15 @@ function LoginPageContent() {
             {/* Password */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <label className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#D4706A' }}>
+                <label className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#d4af37' }}>
                   Password
                 </label>
-                <Link href="/forgot-password" className="font-sans text-[10px] uppercase tracking-widest transition-colors duration-200" style={{ color: 'rgba(212,112,106,0.6)' }}>
+                <Link href="/forgot-password" className="font-sans text-[10px] uppercase tracking-widest transition-colors duration-200" style={{ color: 'rgba(212, 175, 55,0.6)' }}>
                   Forgot?
                 </Link>
               </div>
               <div className="relative">
-                <Lock className="absolute left-3.5 top-3.5 h-4 w-4" style={{ color: 'rgba(212,112,106,0.35)' }} />
+                <Lock className="absolute left-3.5 top-3.5 h-4 w-4" style={{ color: 'rgba(212, 175, 55,0.35)' }} />
                 <input
                   type={showPass ? 'text' : 'password'} required
                   placeholder="••••••••••••"
@@ -160,18 +160,18 @@ function LoginPageContent() {
                   onChange={e => setPassword(e.target.value)}
                   className="w-full pl-10 pr-10 py-3 rounded-sm font-sans text-xs outline-none transition-all duration-300"
                   style={{
-                    background: 'rgba(6,8,18,0.7)',
-                    border: '1px solid rgba(212,112,106,0.12)',
-                    color: '#F0DFC8',
+                    background: 'rgba(11, 38, 38,0.7)',
+                    border: '1px solid rgba(212, 175, 55,0.12)',
+                    color: '#fef8f1',
                   }}
-                  onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.45)')}
-                  onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.12)')}
+                  onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.45)')}
+                  onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.12)')}
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass(!showPass)}
                   className="absolute right-3.5 top-3.5 transition-opacity duration-200"
-                  style={{ color: 'rgba(212,112,106,0.4)' }}
+                  style={{ color: 'rgba(212, 175, 55,0.4)' }}
                 >
                   {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
@@ -192,11 +192,11 @@ function LoginPageContent() {
 
           {/* Divider */}
           <div className="relative my-7 flex items-center">
-            <div className="flex-1 h-px" style={{ background: 'rgba(212,112,106,0.1)' }} />
+            <div className="flex-1 h-px" style={{ background: 'rgba(212, 175, 55,0.1)' }} />
             <span className="px-4 font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.25)' }}>
               Or Continue With
             </span>
-            <div className="flex-1 h-px" style={{ background: 'rgba(212,112,106,0.1)' }} />
+            <div className="flex-1 h-px" style={{ background: 'rgba(212, 175, 55,0.1)' }} />
           </div>
 
           {/* Google */}
@@ -206,15 +206,15 @@ function LoginPageContent() {
             className="w-full py-3 rounded-sm font-sans text-xs uppercase tracking-widest font-bold flex items-center justify-center gap-3 transition-all duration-200 disabled:opacity-50"
             style={{
               background: 'rgba(255,255,255,0.03)',
-              border: '1px solid rgba(212,112,106,0.15)',
+              border: '1px solid rgba(212, 175, 55,0.15)',
               color: 'rgba(219,191,136,0.6)',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'rgba(212,112,106,0.35)';
-              e.currentTarget.style.color = '#F0DFC8';
+              e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.35)';
+              e.currentTarget.style.color = '#fef8f1';
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'rgba(212,112,106,0.15)';
+              e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.15)';
               e.currentTarget.style.color = 'rgba(219,191,136,0.6)';
             }}
           >
@@ -230,7 +230,7 @@ function LoginPageContent() {
             <Link
               href="/register"
               className="font-semibold transition-colors duration-200"
-              style={{ color: '#D4706A' }}
+              style={{ color: '#d4af37' }}
             >
               Create Vault Account
             </Link>
@@ -244,8 +244,8 @@ function LoginPageContent() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="w-full min-h-[90vh] flex items-center justify-center" style={{ backgroundColor: '#060812' }}>
-        <div className="h-8 w-8 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: '#D4706A', borderTopColor: 'transparent' }} />
+      <div className="w-full min-h-[90vh] flex items-center justify-center" style={{ backgroundColor: '#0b2626' }}>
+        <div className="h-8 w-8 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: '#d4af37', borderTopColor: 'transparent' }} />
       </div>
     }>
       <LoginPageContent />

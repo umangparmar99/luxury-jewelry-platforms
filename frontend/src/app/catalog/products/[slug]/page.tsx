@@ -41,7 +41,7 @@ export default function ProductPage() {
 
   if (loading) {
     return (
-      <div className="w-full bg-[#060812] text-[#F0DFC8] min-h-[60vh] flex flex-col items-center justify-center p-6 text-center font-sans">
+      <div className="w-full bg-[#0b2626] text-[#fef8f1] min-h-[60vh] flex flex-col items-center justify-center p-6 text-center font-sans">
         <p className="text-xs uppercase tracking-widest animate-pulse">Consulting Studio Setting...</p>
       </div>
     );
@@ -49,7 +49,7 @@ export default function ProductPage() {
 
   if (!product) {
     return (
-      <div className="w-full bg-[#060812] text-[#F0DFC8] min-h-[60vh] flex flex-col items-center justify-center p-6 text-center font-sans">
+      <div className="w-full bg-[#0b2626] text-[#fef8f1] min-h-[60vh] flex flex-col items-center justify-center p-6 text-center font-sans">
         <h1 className="font-serif text-3xl font-bold text-white tracking-wide">Design Setting Not Found</h1>
         <p className="text-xs text-luxury-gold-200/50 mt-2 max-w-sm">
           The jewelry details or setting model is temporarily unavailable or has been archived.

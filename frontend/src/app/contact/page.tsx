@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle, AlertCircle } from 'lucide-react';
 
 const S = {
-  void: '#060812',
-  rose: '#D4706A',
-  cream: '#F0DFC8',
+  void: '#0b2626',
+  rose: '#d4af37',
+  cream: '#fef8f1',
   creamDim: 'rgba(219,191,136,0.6)',
-  borderFaint: '1px solid rgba(212,112,106,0.1)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.1)',
 };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
@@ -119,7 +119,7 @@ export default function ContactPage() {
                 <div key={label} className="flex gap-4 items-start">
                   <div
                     className="h-8 w-8 shrink-0 rounded-sm flex items-center justify-center"
-                    style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.15)' }}
+                    style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.15)' }}
                   >
                     <Icon className="h-4 w-4" style={{ color: S.rose }} />
                   </div>

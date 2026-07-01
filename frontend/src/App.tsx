@@ -43,7 +43,7 @@ export default function App() {
       <AuthProvider>
         <div
           className="font-sans antialiased flex flex-col min-h-screen bg-noise"
-          style={{ backgroundColor: '#060812', color: '#F0DFC8' }}
+          style={{ backgroundColor: '#0b2626', color: '#fef8f1' }}
         >
           <Header />
           <main className="flex-grow">

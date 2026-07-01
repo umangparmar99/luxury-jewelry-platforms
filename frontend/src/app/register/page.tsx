@@ -9,12 +9,12 @@ import { Mail, Lock, User, Phone, CheckCircle, AlertCircle, Eye, EyeOff, Gem } f
 
 const inputStyle = {
   base: {
-    background: 'rgba(6,8,18,0.7)',
-    border: '1px solid rgba(212,112,106,0.12)',
-    color: '#F0DFC8',
+    background: 'rgba(11, 38, 38,0.7)',
+    border: '1px solid rgba(212, 175, 55,0.12)',
+    color: '#fef8f1',
   },
-  focus: { borderColor: 'rgba(212,112,106,0.45)' },
-  blur:  { borderColor: 'rgba(212,112,106,0.12)' },
+  focus: { borderColor: 'rgba(212, 175, 55,0.45)' },
+  blur:  { borderColor: 'rgba(212, 175, 55,0.12)' },
 };
 
 interface FieldProps {
@@ -30,7 +30,7 @@ function Field({ label, icon, required, optional, type = 'text', placeholder, va
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
-        <label className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#D4706A' }}>
+        <label className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#d4af37' }}>
           {label}
         </label>
         {optional && (
@@ -40,7 +40,7 @@ function Field({ label, icon, required, optional, type = 'text', placeholder, va
         )}
       </div>
       <div className="relative">
-        <span className="absolute left-3.5 top-3.5 h-4 w-4" style={{ color: focused ? 'rgba(212,112,106,0.55)' : 'rgba(212,112,106,0.3)' }}>
+        <span className="absolute left-3.5 top-3.5 h-4 w-4" style={{ color: focused ? 'rgba(212, 175, 55,0.55)' : 'rgba(212, 175, 55,0.3)' }}>
           {icon}
         </span>
         <input
@@ -49,8 +49,8 @@ function Field({ label, icon, required, optional, type = 'text', placeholder, va
           placeholder={placeholder}
           value={value}
           onChange={e => onChange(e.target.value)}
-          onFocus={e => { setFocused(true);  e.currentTarget.style.borderColor = 'rgba(212,112,106,0.45)'; }}
-          onBlur={e  => { setFocused(false); e.currentTarget.style.borderColor = 'rgba(212,112,106,0.12)'; }}
+          onFocus={e => { setFocused(true);  e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.45)'; }}
+          onBlur={e  => { setFocused(false); e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.12)'; }}
           className="w-full pl-10 py-3 rounded-sm font-sans text-xs outline-none transition-all duration-300"
           style={{
             ...inputStyle.base,
@@ -62,7 +62,7 @@ function Field({ label, icon, required, optional, type = 'text', placeholder, va
             type="button"
             onClick={() => setShowPass(!showPass)}
             className="absolute right-3.5 top-3.5 transition-opacity"
-            style={{ color: 'rgba(212,112,106,0.4)' }}
+            style={{ color: 'rgba(212, 175, 55,0.4)' }}
           >
             {showPass ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
           </button>
@@ -98,7 +98,7 @@ export default function RegisterPage() {
   return (
     <div
       className="w-full min-h-[90vh] flex items-center justify-center py-16 px-4 relative overflow-hidden font-sans"
-      style={{ backgroundColor: '#060812' }}
+      style={{ backgroundColor: '#0b2626' }}
     >
       {/* Background orbs */}
       <div className="orb orb-violet absolute top-1/4  right-1/4 w-[450px] h-[450px] opacity-15" />
@@ -115,7 +115,7 @@ export default function RegisterPage() {
           style={{
             background: 'rgba(10,14,30,0.88)',
             backdropFilter: 'blur(30px)',
-            border: '1px solid rgba(212,112,106,0.15)',
+            border: '1px solid rgba(212, 175, 55,0.15)',
             boxShadow: '0 30px 80px rgba(0,0,0,0.7), 0 0 60px rgba(151,128,255,0.04)',
           }}
         >
@@ -123,17 +123,17 @@ export default function RegisterPage() {
           <div className="text-center mb-8">
             <div
               className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
-              style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)' }}
+              style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)' }}
             >
-              <Gem className="h-3 w-3" style={{ color: '#D4706A' }} />
-              <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#E68C72' }}>
+              <Gem className="h-3 w-3" style={{ color: '#d4af37' }} />
+              <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#dfbe58' }}>
                 Join the Vault
               </span>
             </div>
             <h1
               className="font-serif text-3xl font-light mb-2"
               style={{
-                background: 'linear-gradient(135deg, #F5E6D0, #DBBF88 50%, #D4706A)',
+                background: 'linear-gradient(135deg, #fef8f1, #DBBF88 50%, #d4af37)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -160,7 +160,7 @@ export default function RegisterPage() {
             <motion.div
               initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
               className="mb-5 p-4 rounded-sm flex items-start gap-2.5 text-xs"
-              style={{ background: 'rgba(212,112,106,0.1)', border: '1px solid rgba(212,112,106,0.3)', color: '#E68C72' }}
+              style={{ background: 'rgba(212, 175, 55,0.1)', border: '1px solid rgba(212, 175, 55,0.3)', color: '#dfbe58' }}
             >
               <CheckCircle className="h-4 w-4 shrink-0 mt-0.5" /><span>{success}</span>
             </motion.div>
@@ -189,11 +189,11 @@ export default function RegisterPage() {
             By creating an account, you agree to our Terms of Service and Privacy Policy.
           </p>
 
-          <div className="h-px mt-6" style={{ background: 'rgba(212,112,106,0.08)' }} />
+          <div className="h-px mt-6" style={{ background: 'rgba(212, 175, 55,0.08)' }} />
 
           <p className="text-center font-sans text-[11px] mt-5" style={{ color: 'rgba(219,191,136,0.3)' }}>
             Already registered?{' '}
-            <Link href="/login" className="font-semibold transition-colors duration-200" style={{ color: '#D4706A' }}>
+            <Link href="/login" className="font-semibold transition-colors duration-200" style={{ color: '#d4af37' }}>
               Collector Portal Login
             </Link>
           </p>

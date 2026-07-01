@@ -54,7 +54,7 @@ const trendingProducts = [
     image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=500&auto=format&fit=crop',
     imageHover: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=500&auto=format&fit=crop',
     tag: 'Trending',
-    tagColor: '#D4706A',
+    tagColor: '#d4af37',
   },
   {
     name: 'Classic Pavé Diamond Band',
@@ -74,7 +74,7 @@ const trendingProducts = [
     image: 'https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=500&auto=format&fit=crop',
     imageHover: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=500&auto=format&fit=crop',
     tag: 'Rare Cut',
-    tagColor: '#D4706A',
+    tagColor: '#d4af37',
   },
 ];
 
@@ -138,7 +138,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="w-full" style={{ backgroundColor: '#060812', color: '#F0DFC8' }}>
+    <div className="w-full" style={{ backgroundColor: '#0b2626', color: '#fef8f1' }}>
 
       {/* ════════════════════════════════════════════════════════════════
           1. HERO — cinematic parallax
@@ -158,7 +158,7 @@ export default function HomePage() {
 
         {/* Gradient overlays */}
         <div className="absolute inset-0 z-0"
-          style={{ background: 'linear-gradient(to bottom, rgba(6,8,18,0.4) 0%, rgba(6,8,18,0.1) 40%, rgba(6,8,18,0.95) 100%)' }}
+          style={{ background: 'linear-gradient(to bottom, rgba(11, 38, 38,0.4) 0%, rgba(11, 38, 38,0.1) 40%, rgba(11, 38, 38,0.95) 100%)' }}
         />
 
         {/* Orb accents */}
@@ -175,13 +175,13 @@ export default function HomePage() {
             variants={fadeUp} initial="hidden" animate="visible" custom={0}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
             style={{
-              background: 'rgba(212,112,106,0.1)',
-              border: '1px solid rgba(212,112,106,0.25)',
+              background: 'rgba(212, 175, 55,0.1)',
+              border: '1px solid rgba(212, 175, 55,0.25)',
               backdropFilter: 'blur(12px)',
             }}
           >
-            <Gem className="h-3 w-3" style={{ color: '#D4706A' }} />
-            <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#E68C72' }}>
+            <Gem className="h-3 w-3" style={{ color: '#d4af37' }} />
+            <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#dfbe58' }}>
               Bespoke Customizer & Vault
             </span>
           </motion.div>
@@ -192,13 +192,13 @@ export default function HomePage() {
             className="font-serif text-5xl sm:text-7xl lg:text-8xl font-light leading-[1.05] mb-6"
             style={{ letterSpacing: '-0.01em' }}
           >
-            <span style={{ color: '#F5E6D0' }}>Crafting</span>{' '}
-            <span style={{ color: '#F5E6D0' }}>Forever,</span>
+            <span style={{ color: '#fef8f1' }}>Crafting</span>{' '}
+            <span style={{ color: '#fef8f1' }}>Forever,</span>
             <br />
             <span
               className="font-serif italic font-normal"
               style={{
-                background: 'linear-gradient(135deg, #DBBF88 0%, #F5E6D0 40%, #D4706A 80%)',
+                background: 'linear-gradient(135deg, #DBBF88 0%, #fef8f1 40%, #d4af37 80%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -243,7 +243,7 @@ export default function HomePage() {
               { icon: Award,       label: 'Artisan Made' },
             ].map(({ icon: Icon, label }) => (
               <div key={label} className="flex items-center gap-1.5">
-                <Icon className="h-3.5 w-3.5" style={{ color: '#D4706A' }} />
+                <Icon className="h-3.5 w-3.5" style={{ color: '#d4af37' }} />
                 <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.5)' }}>
                   {label}
                 </span>
@@ -257,10 +257,10 @@ export default function HomePage() {
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 }}
         >
-          <div className="h-10 w-px relative overflow-hidden" style={{ background: 'rgba(212,112,106,0.15)' }}>
+          <div className="h-10 w-px relative overflow-hidden" style={{ background: 'rgba(212, 175, 55,0.15)' }}>
             <motion.div
               className="absolute top-0 left-0 right-0 h-4"
-              style={{ background: 'linear-gradient(to bottom, #D4706A, transparent)' }}
+              style={{ background: 'linear-gradient(to bottom, #d4af37, transparent)' }}
               animate={{ y: [0, 24, 0] }}
               transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
             />
@@ -276,7 +276,7 @@ export default function HomePage() {
         className="py-10 border-y"
         style={{
           background: 'rgba(13,18,40,0.5)',
-          borderColor: 'rgba(212,112,106,0.08)',
+          borderColor: 'rgba(212, 175, 55,0.08)',
           backdropFilter: 'blur(20px)',
         }}
       >
@@ -293,7 +293,7 @@ export default function HomePage() {
               <div
                 className="font-serif text-3xl font-light mb-1"
                 style={{
-                  background: 'linear-gradient(135deg, #DBBF88, #D4706A)',
+                  background: 'linear-gradient(135deg, #DBBF88, #d4af37)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -318,7 +318,7 @@ export default function HomePage() {
           <motion.span
             initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             className="font-sans text-[10px] uppercase tracking-widest font-semibold"
-            style={{ color: '#D4706A' }}
+            style={{ color: '#d4af37' }}
           >
             Curated Showcases
           </motion.span>
@@ -326,7 +326,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             className="font-serif text-4xl md:text-5xl font-light mt-3"
-            style={{ color: '#F5E6D0' }}
+            style={{ color: '#fef8f1' }}
           >
             The Autumn Collections
           </motion.h2>
@@ -344,15 +344,15 @@ export default function HomePage() {
               whileHover={{ y: -6 }}
               className="group relative h-[480px] flex flex-col justify-end overflow-hidden rounded-sm cursor-pointer"
               style={{
-                border: '1px solid rgba(212,112,106,0.1)',
+                border: '1px solid rgba(212, 175, 55,0.1)',
                 transition: 'border-color 0.4s, box-shadow 0.4s',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(212,112,106,0.3)';
-                (e.currentTarget as HTMLElement).style.boxShadow  = '0 20px 60px rgba(212,112,106,0.15)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(212, 175, 55,0.3)';
+                (e.currentTarget as HTMLElement).style.boxShadow  = '0 20px 60px rgba(212, 175, 55,0.15)';
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(212,112,106,0.1)';
+                (e.currentTarget as HTMLElement).style.borderColor = 'rgba(212, 175, 55,0.1)';
                 (e.currentTarget as HTMLElement).style.boxShadow  = 'none';
               }}
             >
@@ -362,24 +362,24 @@ export default function HomePage() {
                 style={{ filter: 'brightness(0.6) saturate(0.8)' }}
               />
               {/* Multi-layer gradient */}
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(6,8,18,0.97) 0%, rgba(6,8,18,0.4) 45%, transparent 100%)' }} />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, rgba(11, 38, 38,0.97) 0%, rgba(11, 38, 38,0.4) 45%, transparent 100%)' }} />
 
               {/* Tag */}
               <span
                 className="absolute top-4 left-4 font-sans text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-sm z-10"
-                style={{ background: 'rgba(212,112,106,0.15)', border: '1px solid rgba(212,112,106,0.3)', color: '#E68C72' }}
+                style={{ background: 'rgba(212, 175, 55,0.15)', border: '1px solid rgba(212, 175, 55,0.3)', color: '#dfbe58' }}
               >
                 {col.tag}
               </span>
 
               {/* Content */}
               <div className="relative z-10 p-6 flex flex-col gap-3">
-                <h3 className="font-serif text-2xl font-light" style={{ color: '#F5E6D0' }}>{col.name}</h3>
+                <h3 className="font-serif text-2xl font-light" style={{ color: '#fef8f1' }}>{col.name}</h3>
                 <p className="font-sans text-[11px] leading-relaxed" style={{ color: 'rgba(219,191,136,0.55)' }}>{col.description}</p>
                 <Link
                   href={`/catalog?collection=${col.slug}`}
                   className="inline-flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest font-semibold mt-1 group/link"
-                  style={{ color: '#D4706A' }}
+                  style={{ color: '#d4af37' }}
                 >
                   <span>Explore Collection</span>
                   <ChevronRight className="h-3 w-3 transition-transform group-hover/link:translate-x-1" />
@@ -397,24 +397,24 @@ export default function HomePage() {
         className="py-28"
         style={{
           background: 'linear-gradient(180deg, rgba(13,18,40,0.2) 0%, rgba(13,18,40,0.5) 100%)',
-          borderTop: '1px solid rgba(212,112,106,0.06)',
-          borderBottom: '1px solid rgba(212,112,106,0.06)',
+          borderTop: '1px solid rgba(212, 175, 55,0.06)',
+          borderBottom: '1px solid rgba(212, 175, 55,0.06)',
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row items-center justify-between mb-16 gap-4">
             <div>
-              <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#D4706A' }}>
+              <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#d4af37' }}>
                 Most Desired
               </span>
-              <h2 className="font-serif text-4xl font-light mt-2" style={{ color: '#F5E6D0' }}>
+              <h2 className="font-serif text-4xl font-light mt-2" style={{ color: '#fef8f1' }}>
                 Trending Bespoke Settings
               </h2>
             </div>
             <Link
               href="/catalog"
               className="flex items-center gap-2 font-sans text-[10px] uppercase tracking-widest font-semibold group"
-              style={{ color: '#D4706A' }}
+              style={{ color: '#d4af37' }}
             >
               View Full Catalog
               <ChevronRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -437,11 +437,11 @@ export default function HomePage() {
                 <div
                   className="relative h-[300px] overflow-hidden rounded-sm"
                   style={{
-                    border: '1px solid rgba(212,112,106,0.08)',
+                    border: '1px solid rgba(212, 175, 55,0.08)',
                     transition: 'border-color 0.3s, box-shadow 0.3s',
                     ...(hoveredProduct === prod.sku && {
-                      borderColor: 'rgba(212,112,106,0.25)',
-                      boxShadow: '0 12px 40px rgba(212,112,106,0.12)',
+                      borderColor: 'rgba(212, 175, 55,0.25)',
+                      boxShadow: '0 12px 40px rgba(212, 175, 55,0.12)',
                     }),
                   }}
                 >
@@ -467,7 +467,7 @@ export default function HomePage() {
                   {/* Tag badge */}
                   <span
                     className="absolute top-3 left-3 font-sans text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-sm z-10"
-                    style={{ background: prod.tagColor, color: '#060812', fontWeight: 700 }}
+                    style={{ background: prod.tagColor, color: '#0b2626', fontWeight: 700 }}
                   >
                     {prod.tag}
                   </span>
@@ -478,8 +478,8 @@ export default function HomePage() {
                     onClick={() => toggleWishlist(prod.sku)}
                     className="absolute top-3 right-3 h-8 w-8 rounded-full flex items-center justify-center z-10 transition-all duration-300"
                     style={{
-                      background: wishlistedItems.has(prod.sku) ? 'rgba(212,112,106,0.9)' : 'rgba(6,8,18,0.65)',
-                      border: '1px solid rgba(212,112,106,0.3)',
+                      background: wishlistedItems.has(prod.sku) ? 'rgba(212, 175, 55,0.9)' : 'rgba(11, 38, 38,0.65)',
+                      border: '1px solid rgba(212, 175, 55,0.3)',
                       backdropFilter: 'blur(8px)',
                     }}
                     aria-label="Add to wishlist"
@@ -487,8 +487,8 @@ export default function HomePage() {
                     <Heart
                       className="h-3.5 w-3.5 transition-all duration-200"
                       style={{
-                        color: wishlistedItems.has(prod.sku) ? '#060812' : '#D4706A',
-                        fill: wishlistedItems.has(prod.sku) ? '#060812' : 'transparent',
+                        color: wishlistedItems.has(prod.sku) ? '#0b2626' : '#d4af37',
+                        fill: wishlistedItems.has(prod.sku) ? '#0b2626' : 'transparent',
                       }}
                     />
                   </motion.button>
@@ -502,15 +502,15 @@ export default function HomePage() {
                         exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.2 }}
                         className="absolute bottom-0 left-0 right-0 p-3 z-10"
-                        style={{ background: 'linear-gradient(to top, rgba(6,8,18,0.95), transparent)' }}
+                        style={{ background: 'linear-gradient(to top, rgba(11, 38, 38,0.95), transparent)' }}
                       >
                         <Link
                           href={`/catalog/products/${prod.sku}`}
                           className="block w-full text-center py-2.5 font-sans text-[10px] uppercase tracking-widest font-bold rounded-sm transition-all duration-200"
                           style={{
-                            background: 'rgba(212,112,106,0.15)',
-                            border: '1px solid rgba(212,112,106,0.4)',
-                            color: '#E68C72',
+                            background: 'rgba(212, 175, 55,0.15)',
+                            border: '1px solid rgba(212, 175, 55,0.4)',
+                            color: '#dfbe58',
                           }}
                         >
                           View Details
@@ -522,17 +522,17 @@ export default function HomePage() {
 
                 {/* Product info */}
                 <div className="mt-4 flex flex-col gap-1">
-                  <span className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(212,112,106,0.7)' }}>
+                  <span className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(212, 175, 55,0.7)' }}>
                     Setting · from
                   </span>
-                  <h3 className="font-serif text-base font-light leading-snug" style={{ color: '#F0DFC8' }}>
+                  <h3 className="font-serif text-base font-light leading-snug" style={{ color: '#fef8f1' }}>
                     <Link href={`/catalog/products/${prod.sku}`} className="hover:opacity-75 transition-opacity">
                       {prod.name}
                     </Link>
                   </h3>
                   <div
                     className="flex items-center justify-between pt-2 mt-1"
-                    style={{ borderTop: '1px solid rgba(212,112,106,0.07)' }}
+                    style={{ borderTop: '1px solid rgba(212, 175, 55,0.07)' }}
                   >
                     <span className="font-sans text-sm font-semibold" style={{ color: '#DBBF88' }}>
                       ${prod.price.toLocaleString()}
@@ -564,7 +564,7 @@ export default function HomePage() {
           >
             <div
               className="relative h-full w-full rounded-sm overflow-hidden"
-              style={{ border: '1px solid rgba(212,112,106,0.12)' }}
+              style={{ border: '1px solid rgba(212, 175, 55,0.12)' }}
             >
               <Image
                 src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=900&auto=format&fit=crop"
@@ -572,7 +572,7 @@ export default function HomePage() {
                 className="object-cover"
                 style={{ filter: 'brightness(0.65) saturate(0.7)' }}
               />
-              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(6,8,18,0.3) 0%, rgba(6,8,18,0.05) 100%)' }} />
+              <div className="absolute inset-0" style={{ background: 'linear-gradient(135deg, rgba(11, 38, 38,0.3) 0%, rgba(11, 38, 38,0.05) 100%)' }} />
             </div>
 
             {/* Floating stats card */}
@@ -582,10 +582,10 @@ export default function HomePage() {
               className="absolute -bottom-6 -right-4 glass-card rounded-sm p-5 max-w-[200px] shadow-deep"
             >
               <div className="flex items-center gap-2 mb-3">
-                <div className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#D4706A' }} />
-                <span className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(212,112,106,0.7)' }}>Live Crafting</span>
+                <div className="h-2 w-2 rounded-full animate-pulse" style={{ background: '#d4af37' }} />
+                <span className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(212, 175, 55,0.7)' }}>Live Crafting</span>
               </div>
-              <div className="font-serif text-2xl font-light mb-0.5" style={{ color: '#F5E6D0' }}>340+</div>
+              <div className="font-serif text-2xl font-light mb-0.5" style={{ color: '#fef8f1' }}>340+</div>
               <div className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.4)' }}>Rings Made This Month</div>
             </motion.div>
 
@@ -599,7 +599,7 @@ export default function HomePage() {
                 <Diamond className="h-4 w-4" style={{ color: '#9780FF' }} />
                 <div>
                   <div className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.4)' }}>Certified By</div>
-                  <div className="font-serif text-sm font-semibold" style={{ color: '#F0DFC8' }}>GIA & IGI</div>
+                  <div className="font-serif text-sm font-semibold" style={{ color: '#fef8f1' }}>GIA & IGI</div>
                 </div>
               </div>
             </motion.div>
@@ -613,15 +613,15 @@ export default function HomePage() {
             transition={{ duration: 1 }}
             className="flex flex-col gap-6"
           >
-            <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#D4706A' }}>
+            <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#d4af37' }}>
               Signature Craftsmanship
             </span>
-            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1]" style={{ color: '#F5E6D0' }}>
+            <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-light leading-[1.1]" style={{ color: '#fef8f1' }}>
               Configure Your{' '}
               <span
                 className="italic"
                 style={{
-                  background: 'linear-gradient(135deg, #DBBF88, #D4706A)',
+                  background: 'linear-gradient(135deg, #DBBF88, #d4af37)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -637,7 +637,7 @@ export default function HomePage() {
             {/* Feature bullets */}
             <div
               className="grid grid-cols-1 gap-4 py-6"
-              style={{ borderTop: '1px solid rgba(212,112,106,0.08)', borderBottom: '1px solid rgba(212,112,106,0.08)' }}
+              style={{ borderTop: '1px solid rgba(212, 175, 55,0.08)', borderBottom: '1px solid rgba(212, 175, 55,0.08)' }}
             >
               {[
                 { icon: Gem,      title: 'Ethical Sourcing',  body: 'Conflict-free GIA gemstones verified by our diamond concierges.' },
@@ -648,12 +648,12 @@ export default function HomePage() {
                 <div key={title} className="flex items-start gap-3">
                   <div
                     className="h-8 w-8 shrink-0 rounded-sm flex items-center justify-center mt-0.5"
-                    style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.15)' }}
+                    style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.15)' }}
                   >
-                    <Icon className="h-3.5 w-3.5" style={{ color: '#D4706A' }} />
+                    <Icon className="h-3.5 w-3.5" style={{ color: '#d4af37' }} />
                   </div>
                   <div>
-                    <h4 className="font-serif text-sm font-semibold mb-0.5" style={{ color: '#F0DFC8' }}>{title}</h4>
+                    <h4 className="font-serif text-sm font-semibold mb-0.5" style={{ color: '#fef8f1' }}>{title}</h4>
                     <p className="font-sans text-[11px] leading-relaxed" style={{ color: 'rgba(219,191,136,0.45)' }}>{body}</p>
                   </div>
                 </div>
@@ -674,13 +674,13 @@ export default function HomePage() {
       <section
         className="py-20"
         style={{
-          background: 'linear-gradient(135deg, rgba(151,128,255,0.03) 0%, rgba(212,112,106,0.04) 100%)',
-          borderTop: '1px solid rgba(212,112,106,0.06)',
+          background: 'linear-gradient(135deg, rgba(151,128,255,0.03) 0%, rgba(212, 175, 55,0.04) 100%)',
+          borderTop: '1px solid rgba(212, 175, 55,0.06)',
         }}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <h2 className="font-serif text-3xl font-light" style={{ color: '#F5E6D0' }}>Why BeyondCarat</h2>
+            <h2 className="font-serif text-3xl font-light" style={{ color: '#fef8f1' }}>Why BeyondCarat</h2>
             <div className="divider-rose mt-4" />
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
@@ -702,13 +702,13 @@ export default function HomePage() {
                 <div
                   className="h-12 w-12 rounded-sm flex items-center justify-center"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(212,112,106,0.12), rgba(151,128,255,0.08))',
-                    border: '1px solid rgba(212,112,106,0.2)',
+                    background: 'linear-gradient(135deg, rgba(212, 175, 55,0.12), rgba(151,128,255,0.08))',
+                    border: '1px solid rgba(212, 175, 55,0.2)',
                   }}
                 >
-                  <Icon className="h-5 w-5" style={{ color: '#D4706A' }} />
+                  <Icon className="h-5 w-5" style={{ color: '#d4af37' }} />
                 </div>
-                <h3 className="font-serif text-base font-semibold" style={{ color: '#F0DFC8' }}>{title}</h3>
+                <h3 className="font-serif text-base font-semibold" style={{ color: '#fef8f1' }}>{title}</h3>
                 <p className="font-sans text-[11px] leading-relaxed" style={{ color: 'rgba(219,191,136,0.45)' }}>{body}</p>
               </motion.div>
             ))}
@@ -721,10 +721,10 @@ export default function HomePage() {
       ════════════════════════════════════════════════════════════════ */}
       <section className="py-28 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#D4706A' }}>
+          <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#d4af37' }}>
             Client Memoirs
           </span>
-          <h2 className="font-serif text-4xl font-light mt-3" style={{ color: '#F5E6D0' }}>Reviews From Beyond</h2>
+          <h2 className="font-serif text-4xl font-light mt-3" style={{ color: '#fef8f1' }}>Reviews From Beyond</h2>
           <div className="divider-rose mt-5" />
         </div>
 
@@ -741,7 +741,7 @@ export default function HomePage() {
               <div className="flex flex-col gap-4">
                 <div className="flex gap-1">
                   {[...Array(t.rating)].map((_, j) => (
-                    <Star key={j} className="h-3.5 w-3.5" style={{ fill: '#D4706A', color: '#D4706A' }} />
+                    <Star key={j} className="h-3.5 w-3.5" style={{ fill: '#d4af37', color: '#d4af37' }} />
                   ))}
                 </div>
                 <p className="font-serif text-base font-light leading-relaxed italic" style={{ color: 'rgba(219,191,136,0.7)' }}>
@@ -750,22 +750,22 @@ export default function HomePage() {
               </div>
               <div
                 className="flex items-center gap-3 pt-5"
-                style={{ borderTop: '1px solid rgba(212,112,106,0.08)' }}
+                style={{ borderTop: '1px solid rgba(212, 175, 55,0.08)' }}
               >
                 {/* Avatar */}
                 <div
                   className="h-9 w-9 rounded-full flex items-center justify-center text-[11px] font-bold font-sans shrink-0"
                   style={{
-                    background: 'linear-gradient(135deg, rgba(212,112,106,0.3), rgba(151,128,255,0.2))',
-                    border: '1px solid rgba(212,112,106,0.3)',
-                    color: '#E68C72',
+                    background: 'linear-gradient(135deg, rgba(212, 175, 55,0.3), rgba(151,128,255,0.2))',
+                    border: '1px solid rgba(212, 175, 55,0.3)',
+                    color: '#dfbe58',
                   }}
                 >
                   {t.avatar}
                 </div>
                 <div>
-                  <div className="font-sans text-xs font-semibold" style={{ color: '#F0DFC8' }}>{t.name}</div>
-                  <div className="font-sans text-[10px]" style={{ color: 'rgba(212,112,106,0.6)' }}>{t.location}</div>
+                  <div className="font-sans text-xs font-semibold" style={{ color: '#fef8f1' }}>{t.name}</div>
+                  <div className="font-sans text-[10px]" style={{ color: 'rgba(212, 175, 55,0.6)' }}>{t.location}</div>
                 </div>
               </div>
             </motion.div>
@@ -778,14 +778,14 @@ export default function HomePage() {
       ════════════════════════════════════════════════════════════════ */}
       <section
         className="py-20"
-        style={{ borderTop: '1px solid rgba(212,112,106,0.06)' }}
+        style={{ borderTop: '1px solid rgba(212, 175, 55,0.06)' }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#D4706A' }}>
+            <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#d4af37' }}>
               Social Muse
             </span>
-            <h2 className="font-serif text-4xl font-light mt-3" style={{ color: '#F5E6D0' }}>#BeyondCaratMoments</h2>
+            <h2 className="font-serif text-4xl font-light mt-3" style={{ color: '#fef8f1' }}>#BeyondCaratMoments</h2>
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
@@ -798,7 +798,7 @@ export default function HomePage() {
                 transition={{ duration: 0.5, delay: i * 0.07 }}
                 whileHover={{ scale: 1.03 }}
                 className="group relative h-[160px] overflow-hidden rounded-sm cursor-pointer"
-                style={{ border: '1px solid rgba(212,112,106,0.08)' }}
+                style={{ border: '1px solid rgba(212, 175, 55,0.08)' }}
               >
                 <Image
                   src={url} alt={`Gallery ${i + 1}`} fill
@@ -807,11 +807,11 @@ export default function HomePage() {
                 />
                 <div
                   className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-                  style={{ background: 'rgba(212,112,106,0.18)' }}
+                  style={{ background: 'rgba(212, 175, 55,0.18)' }}
                 >
                   <span
                     className="font-sans text-[9px] uppercase tracking-widest font-bold px-3 py-1.5 rounded-sm"
-                    style={{ background: 'rgba(6,8,18,0.7)', color: '#E68C72', border: '1px solid rgba(212,112,106,0.3)' }}
+                    style={{ background: 'rgba(11, 38, 38,0.7)', color: '#dfbe58', border: '1px solid rgba(212, 175, 55,0.3)' }}
                   >
                     View
                   </span>
@@ -834,8 +834,8 @@ export default function HomePage() {
           className="max-w-4xl mx-auto relative rounded-sm overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, rgba(13,18,40,0.9) 0%, rgba(20,12,35,0.9) 100%)',
-            border: '1px solid rgba(212,112,106,0.15)',
-            boxShadow: '0 0 80px rgba(212,112,106,0.08), 0 40px 80px rgba(0,0,0,0.5)',
+            border: '1px solid rgba(212, 175, 55,0.15)',
+            boxShadow: '0 0 80px rgba(212, 175, 55,0.08), 0 40px 80px rgba(0,0,0,0.5)',
           }}
         >
           {/* Background orbs inside card */}
@@ -843,20 +843,20 @@ export default function HomePage() {
           <div className="orb orb-violet absolute -bottom-12 -left-12 w-56 h-56 opacity-20" />
 
           {/* Decorative border top line */}
-          <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(212,112,106,0.5), transparent)' }} />
+          <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, rgba(212, 175, 55,0.5), transparent)' }} />
 
           <div className="relative z-10 p-12 sm:p-16 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5" style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)' }}>
-              <Sparkles className="h-3 w-3" style={{ color: '#D4706A' }} />
-              <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#E68C72' }}>Private Access</span>
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5" style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)' }}>
+              <Sparkles className="h-3 w-3" style={{ color: '#d4af37' }} />
+              <span className="font-sans text-[10px] uppercase tracking-widest" style={{ color: '#dfbe58' }}>Private Access</span>
             </div>
 
-            <h2 className="font-serif text-4xl sm:text-5xl font-light mb-4" style={{ color: '#F5E6D0' }}>
+            <h2 className="font-serif text-4xl sm:text-5xl font-light mb-4" style={{ color: '#fef8f1' }}>
               Become A{' '}
               <span
                 className="italic"
                 style={{
-                  background: 'linear-gradient(135deg, #DBBF88, #D4706A)',
+                  background: 'linear-gradient(135deg, #DBBF88, #d4af37)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -876,12 +876,12 @@ export default function HomePage() {
                 placeholder="Your email address"
                 className="flex-1 px-5 py-4 rounded-sm font-sans text-sm outline-none transition-all duration-300"
                 style={{
-                  background: 'rgba(6,8,18,0.7)',
-                  border: '1px solid rgba(212,112,106,0.15)',
-                  color: '#F0DFC8',
+                  background: 'rgba(11, 38, 38,0.7)',
+                  border: '1px solid rgba(212, 175, 55,0.15)',
+                  color: '#fef8f1',
                 }}
-                onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.45)')}
-                onBlur={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.15)')}
+                onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.45)')}
+                onBlur={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.15)')}
                 required
               />
               <button

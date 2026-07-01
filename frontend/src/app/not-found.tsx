@@ -6,11 +6,11 @@ import { motion } from 'framer-motion';
 import { HelpCircle, Sparkles, Compass } from 'lucide-react';
 
 const S = {
-  void: '#060812',
-  rose: '#D4706A',
-  cream: '#F0DFC8',
+  void: '#0b2626',
+  rose: '#d4af37',
+  cream: '#fef8f1',
   creamDim: 'rgba(219,191,136,0.6)',
-  borderFaint: '1px solid rgba(212,112,106,0.1)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.1)',
 };
 
 export default function NotFound() {
@@ -26,7 +26,7 @@ export default function NotFound() {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6 }}
           className="mx-auto h-16 w-16 rounded-sm flex items-center justify-center"
-          style={{ background: 'rgba(212,112,106,0.06)', border: '1px solid rgba(212,112,106,0.15)' }}
+          style={{ background: 'rgba(212, 175, 55,0.06)', border: '1px solid rgba(212, 175, 55,0.15)' }}
         >
           <Compass className="h-6 w-6 animate-spin-slow" style={{ color: S.rose }} />
         </motion.div>

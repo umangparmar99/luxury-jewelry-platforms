@@ -7,8 +7,8 @@ export default function Footer() {
     <footer
       className="w-full font-sans"
       style={{
-        background: 'linear-gradient(180deg, rgba(6,8,18,0) 0%, #060812 8%, #060812 100%)',
-        borderTop: '1px solid rgba(212,112,106,0.08)',
+        background: 'linear-gradient(180deg, rgba(11, 38, 38,0) 0%, #0b2626 8%, #0b2626 100%)',
+        borderTop: '1px solid rgba(212, 175, 55,0.08)',
       }}
     >
       {/* ── VALUE PILLARS ROW ──────────────────────────────────────────── */}
@@ -16,7 +16,7 @@ export default function Footer() {
         className="w-full py-12"
         style={{
           background: 'rgba(13,18,40,0.4)',
-          borderBottom: '1px solid rgba(212,112,106,0.07)',
+          borderBottom: '1px solid rgba(212, 175, 55,0.07)',
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,17 +43,17 @@ export default function Footer() {
                 className="flex items-start gap-4 p-5 rounded-sm group transition-all duration-300"
                 style={{
                   background: 'rgba(255,255,255,0.015)',
-                  border: '1px solid rgba(212,112,106,0.06)',
+                  border: '1px solid rgba(212, 175, 55,0.06)',
                 }}
               >
                 <div
                   className="shrink-0 h-10 w-10 rounded-sm flex items-center justify-center transition-all duration-300 group-hover:scale-110"
                   style={{
-                    background: 'rgba(212,112,106,0.08)',
-                    border: '1px solid rgba(212,112,106,0.2)',
+                    background: 'rgba(212, 175, 55,0.08)',
+                    border: '1px solid rgba(212, 175, 55,0.2)',
                   }}
                 >
-                  <Icon className="h-4.5 w-4.5" style={{ width: '18px', height: '18px', color: '#D4706A' }} />
+                  <Icon className="h-4.5 w-4.5" style={{ width: '18px', height: '18px', color: '#d4af37' }} />
                 </div>
                 <div>
                   <h4 className="font-serif text-sm font-semibold mb-1" style={{ color: '#E5CCA0' }}>
@@ -79,7 +79,7 @@ export default function Footer() {
             <span
               className="font-serif text-2xl tracking-[0.12em] uppercase font-light"
               style={{
-                background: 'linear-gradient(135deg, #DBBF88 0%, #F5E6D0 50%, #D4706A 100%)',
+                background: 'linear-gradient(135deg, #DBBF88 0%, #fef8f1 50%, #d4af37 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
@@ -98,7 +98,7 @@ export default function Footer() {
               { Icon: Mail,    text: 'concierge@beyondcarat.com' },
             ].map(({ Icon, text }) => (
               <div key={text} className="flex items-center gap-2">
-                <Icon className="h-3.5 w-3.5 shrink-0" style={{ color: '#D4706A' }} />
+                <Icon className="h-3.5 w-3.5 shrink-0" style={{ color: '#d4af37' }} />
                 <span style={{ color: 'rgba(219,191,136,0.5)' }}>{text}</span>
               </div>
             ))}
@@ -109,7 +109,7 @@ export default function Footer() {
               <button
                 key={i}
                 className="h-8 w-8 rounded-sm flex items-center justify-center transition-all duration-200 hover:scale-110"
-                style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.15)' }}
+                style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.15)' }}
               >
                 <Icon className="h-3.5 w-3.5" style={{ color: 'rgba(219,191,136,0.5)' }} />
               </button>
@@ -121,7 +121,7 @@ export default function Footer() {
         <div>
           <h5
             className="font-sans text-[10px] uppercase tracking-widest mb-6 font-semibold"
-            style={{ color: '#D4706A' }}
+            style={{ color: '#d4af37' }}
           >
             Bespoke Services
           </h5>
@@ -140,7 +140,7 @@ export default function Footer() {
                 >
                   <span
                     className="h-px w-0 group-hover:w-3 transition-all duration-300"
-                    style={{ background: '#D4706A' }}
+                    style={{ background: '#d4af37' }}
                   />
                   <span className="group-hover:opacity-80 transition-opacity">{label}</span>
                 </Link>
@@ -153,7 +153,7 @@ export default function Footer() {
         <div>
           <h5
             className="font-sans text-[10px] uppercase tracking-widest mb-6 font-semibold"
-            style={{ color: '#D4706A' }}
+            style={{ color: '#d4af37' }}
           >
             Concierge Support
           </h5>
@@ -172,7 +172,7 @@ export default function Footer() {
                 >
                   <span
                     className="h-px w-0 group-hover:w-3 transition-all duration-300"
-                    style={{ background: '#D4706A' }}
+                    style={{ background: '#d4af37' }}
                   />
                   <span className="group-hover:opacity-80 transition-opacity">{label}</span>
                 </Link>
@@ -185,7 +185,7 @@ export default function Footer() {
         <div>
           <h5
             className="font-sans text-[10px] uppercase tracking-widest mb-6 font-semibold"
-            style={{ color: '#D4706A' }}
+            style={{ color: '#d4af37' }}
           >
             The Insider
           </h5>
@@ -197,20 +197,20 @@ export default function Footer() {
               className="flex items-center gap-2 px-4 py-3 rounded-sm"
               style={{
                 background: 'rgba(255,255,255,0.025)',
-                border: '1px solid rgba(212,112,106,0.12)',
+                border: '1px solid rgba(212, 175, 55,0.12)',
               }}
             >
               <input
                 type="email"
                 placeholder="Your email address"
                 className="bg-transparent text-[11px] outline-none w-full placeholder:opacity-40 font-sans"
-                style={{ color: '#F0DFC8' }}
+                style={{ color: '#fef8f1' }}
                 required
               />
               <button
                 type="submit"
                 className="shrink-0 transition-all duration-200 hover:scale-110"
-                style={{ color: '#D4706A' }}
+                style={{ color: '#d4af37' }}
                 aria-label="Subscribe"
               >
                 <Send className="h-3.5 w-3.5" />
@@ -226,7 +226,7 @@ export default function Footer() {
       {/* ── BOTTOM BAR ─────────────────────────────────────────────────── */}
       <div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4"
-        style={{ borderTop: '1px solid rgba(212,112,106,0.07)' }}
+        style={{ borderTop: '1px solid rgba(212, 175, 55,0.07)' }}
       >
         <p className="text-[9px] uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.25)' }}>
           © 2026 BeyondCarat Private Ltd. All Rights Reserved.
@@ -237,11 +237,11 @@ export default function Footer() {
             <React.Fragment key={p}>
               <span
                 className="font-semibold px-2 py-0.5 rounded-sm"
-                style={{ color: 'rgba(219,191,136,0.45)', background: 'rgba(212,112,106,0.06)', border: '1px solid rgba(212,112,106,0.1)' }}
+                style={{ color: 'rgba(219,191,136,0.45)', background: 'rgba(212, 175, 55,0.06)', border: '1px solid rgba(212, 175, 55,0.1)' }}
               >
                 {p}
               </span>
-              {i < 1 && <span style={{ color: 'rgba(212,112,106,0.3)' }}>|</span>}
+              {i < 1 && <span style={{ color: 'rgba(212, 175, 55,0.3)' }}>|</span>}
             </React.Fragment>
           ))}
         </div>

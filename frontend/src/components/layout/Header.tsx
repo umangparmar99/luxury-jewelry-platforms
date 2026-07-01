@@ -63,8 +63,8 @@ export default function Header() {
       <div
         className="w-full overflow-hidden py-2.5 border-b"
         style={{
-          background: 'linear-gradient(90deg, rgba(212,112,106,0.08) 0%, rgba(151,128,255,0.05) 100%)',
-          borderColor: 'rgba(212,112,106,0.15)',
+          background: 'linear-gradient(90deg, rgba(212, 175, 55,0.08) 0%, rgba(151,128,255,0.05) 100%)',
+          borderColor: 'rgba(212, 175, 55,0.15)',
         }}
       >
         <div className="marquee-track">
@@ -88,10 +88,10 @@ export default function Header() {
         style={
           isScrolled
             ? {
-                background: 'rgba(6,8,18,0.85)',
+                background: 'rgba(11, 38, 38,0.85)',
                 backdropFilter: 'blur(24px)',
                 WebkitBackdropFilter: 'blur(24px)',
-                borderBottom: '1px solid rgba(212,112,106,0.12)',
+                borderBottom: '1px solid rgba(212, 175, 55,0.12)',
                 boxShadow: '0 4px 40px rgba(0,0,0,0.6)',
                 paddingTop: '14px',
                 paddingBottom: '14px',
@@ -111,7 +111,7 @@ export default function Header() {
             <button
               onClick={() => setIsMobileMenuOpen(true)}
               className="p-2 rounded-sm transition-all duration-200"
-              style={{ color: '#E68C72' }}
+              style={{ color: '#dfbe58' }}
               aria-label="Open menu"
             >
               <Menu className="h-5 w-5" />
@@ -132,7 +132,7 @@ export default function Header() {
                 </span>
                 <span
                   className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-400"
-                  style={{ background: 'linear-gradient(90deg, #D4706A, transparent)' }}
+                  style={{ background: 'linear-gradient(90deg, #d4af37, transparent)' }}
                 />
               </Link>
             ))}
@@ -144,7 +144,7 @@ export default function Header() {
               <span
                 className="font-serif text-2xl md:text-3xl tracking-[0.15em] uppercase font-light transition-all duration-300 group-hover:tracking-[0.2em]"
                 style={{
-                  background: 'linear-gradient(135deg, #DBBF88 0%, #F5E6D0 45%, #D4706A 100%)',
+                  background: 'linear-gradient(135deg, #DBBF88 0%, #fef8f1 45%, #d4af37 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',
@@ -175,7 +175,7 @@ export default function Header() {
                 </span>
                 <span
                   className="absolute bottom-0 left-0 h-px w-0 group-hover:w-full transition-all duration-400"
-                  style={{ background: 'linear-gradient(90deg, #D4706A, transparent)' }}
+                  style={{ background: 'linear-gradient(90deg, #d4af37, transparent)' }}
                 />
               </Link>
             ))}
@@ -211,17 +211,17 @@ export default function Header() {
                   style={{
                     background: 'rgba(10,14,30,0.95)',
                     backdropFilter: 'blur(20px)',
-                    border: '1px solid rgba(212,112,106,0.15)',
+                    border: '1px solid rgba(212, 175, 55,0.15)',
                     boxShadow: '0 16px 40px rgba(0,0,0,0.7)',
                   }}
                 >
-                  <div className="px-3 py-1.5 text-[9px] uppercase tracking-widest border-b mb-1" style={{ color: 'rgba(219,191,136,0.35)', borderColor: 'rgba(212,112,106,0.1)' }}>
+                  <div className="px-3 py-1.5 text-[9px] uppercase tracking-widest border-b mb-1" style={{ color: 'rgba(219,191,136,0.35)', borderColor: 'rgba(212, 175, 55,0.1)' }}>
                     {user.role}
                   </div>
                   <Link href="/dashboard" className="px-3 py-2 text-[10px] uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5" style={{ color: 'rgba(219,191,136,0.75)' }}>
                     Dashboard
                   </Link>
-                  <button onClick={logout} className="w-full px-3 py-2 text-left text-[10px] uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5" style={{ color: 'rgba(212,112,106,0.8)' }}>
+                  <button onClick={logout} className="w-full px-3 py-2 text-left text-[10px] uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5" style={{ color: 'rgba(212, 175, 55,0.8)' }}>
                     Logout
                   </button>
                 </div>
@@ -238,7 +238,7 @@ export default function Header() {
               {wishlistCount > 0 && (
                 <span
                   className="absolute -top-0.5 -right-0.5 text-[8px] font-bold rounded-full h-4 w-4 flex items-center justify-center font-sans"
-                  style={{ background: '#D4706A', color: '#060812' }}
+                  style={{ background: '#d4af37', color: '#0b2626' }}
                 >
                   {wishlistCount}
                 </span>
@@ -251,7 +251,7 @@ export default function Header() {
               {cartCount > 0 && (
                 <span
                   className="absolute -top-0.5 -right-0.5 text-[8px] font-bold rounded-full h-4 w-4 flex items-center justify-center font-sans"
-                  style={{ background: '#D4706A', color: '#060812' }}
+                  style={{ background: '#d4af37', color: '#0b2626' }}
                 >
                   {cartCount}
                 </span>
@@ -269,7 +269,7 @@ export default function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[60] flex items-start justify-center pt-24 px-4"
-            style={{ background: 'rgba(6,8,18,0.92)', backdropFilter: 'blur(20px)' }}
+            style={{ background: 'rgba(11, 38, 38,0.92)', backdropFilter: 'blur(20px)' }}
             onClick={() => setSearchOpen(false)}
           >
             <motion.div
@@ -284,12 +284,12 @@ export default function Header() {
                 className="rounded-sm overflow-hidden"
                 style={{
                   background: 'rgba(13,18,40,0.9)',
-                  border: '1px solid rgba(212,112,106,0.2)',
-                  boxShadow: '0 0 60px rgba(212,112,106,0.15)',
+                  border: '1px solid rgba(212, 175, 55,0.2)',
+                  boxShadow: '0 0 60px rgba(212, 175, 55,0.15)',
                 }}
               >
-                <div className="flex items-center gap-3 px-5 py-4 border-b" style={{ borderColor: 'rgba(212,112,106,0.1)' }}>
-                  <Search className="h-4 w-4 shrink-0" style={{ color: '#D4706A' }} />
+                <div className="flex items-center gap-3 px-5 py-4 border-b" style={{ borderColor: 'rgba(212, 175, 55,0.1)' }}>
+                  <Search className="h-4 w-4 shrink-0" style={{ color: '#d4af37' }} />
                   <input
                     autoFocus
                     type="text"
@@ -297,7 +297,7 @@ export default function Header() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="flex-1 bg-transparent text-sm outline-none font-sans"
-                    style={{ color: '#F0DFC8' }}
+                    style={{ color: '#fef8f1' }}
                   />
                   <button onClick={() => setSearchOpen(false)} style={{ color: 'rgba(219,191,136,0.4)' }}>
                     <X className="h-4 w-4" />
@@ -308,7 +308,7 @@ export default function Header() {
                     <button
                       key={q}
                       className="px-3 py-1.5 rounded-sm text-[10px] uppercase tracking-wider font-sans transition-all duration-200 hover:opacity-80"
-                      style={{ background: 'rgba(212,112,106,0.1)', border: '1px solid rgba(212,112,106,0.15)', color: '#E68C72' }}
+                      style={{ background: 'rgba(212, 175, 55,0.1)', border: '1px solid rgba(212, 175, 55,0.15)', color: '#dfbe58' }}
                       onClick={() => setSearchQuery(q)}
                     >
                       {q}
@@ -331,7 +331,7 @@ export default function Header() {
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
               className="fixed inset-0 z-50"
-              style={{ background: 'rgba(6,8,18,0.7)', backdropFilter: 'blur(8px)' }}
+              style={{ background: 'rgba(11, 38, 38,0.7)', backdropFilter: 'blur(8px)' }}
             />
             <motion.div
               initial={{ x: '-100%' }}
@@ -342,17 +342,17 @@ export default function Header() {
               style={{
                 background: 'rgba(8,11,24,0.97)',
                 backdropFilter: 'blur(30px)',
-                borderRight: '1px solid rgba(212,112,106,0.12)',
+                borderRight: '1px solid rgba(212, 175, 55,0.12)',
                 boxShadow: '8px 0 60px rgba(0,0,0,0.8)',
               }}
             >
               {/* Top */}
               <div>
-                <div className="flex items-center justify-between pb-7 mb-8" style={{ borderBottom: '1px solid rgba(212,112,106,0.1)' }}>
+                <div className="flex items-center justify-between pb-7 mb-8" style={{ borderBottom: '1px solid rgba(212, 175, 55,0.1)' }}>
                   <span
                     className="font-serif text-xl tracking-[0.12em] uppercase font-light"
                     style={{
-                      background: 'linear-gradient(135deg, #DBBF88, #D4706A)',
+                      background: 'linear-gradient(135deg, #DBBF88, #d4af37)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
@@ -363,7 +363,7 @@ export default function Header() {
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="p-1.5 rounded-sm transition-colors duration-200"
-                    style={{ color: 'rgba(212,112,106,0.7)' }}
+                    style={{ color: 'rgba(212, 175, 55,0.7)' }}
                   >
                     <X className="h-5 w-5" />
                   </button>
@@ -386,7 +386,7 @@ export default function Header() {
                         <span className="group-hover:text-cream-200 transition-colors" style={{ color: 'inherit' }}>
                           {link.name}
                         </span>
-                        <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#D4706A' }}>→</span>
+                        <span className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" style={{ color: '#d4af37' }}>→</span>
                       </Link>
                     </motion.div>
                   ))}
@@ -403,7 +403,7 @@ export default function Header() {
                 </nav>
 
                 {/* Quick Icons */}
-                <div className="flex gap-4 mt-8 pt-8" style={{ borderTop: '1px solid rgba(212,112,106,0.08)' }}>
+                <div className="flex gap-4 mt-8 pt-8" style={{ borderTop: '1px solid rgba(212, 175, 55,0.08)' }}>
                   <Link href="/wishlist" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-2 text-xs font-sans uppercase tracking-wider" style={{ color: 'rgba(219,191,136,0.5)' }}>
                     <Heart className="h-4 w-4" /> Wishlist {wishlistCount > 0 && <span className="text-rose-500">({wishlistCount})</span>}
                   </Link>
@@ -414,9 +414,9 @@ export default function Header() {
               </div>
 
               {/* Bottom */}
-              <div className="pt-6" style={{ borderTop: '1px solid rgba(212,112,106,0.08)' }}>
+              <div className="pt-6" style={{ borderTop: '1px solid rgba(212, 175, 55,0.08)' }}>
                 <div className="flex items-center gap-2 mb-3">
-                  <Gem className="h-3 w-3" style={{ color: '#D4706A' }} />
+                  <Gem className="h-3 w-3" style={{ color: '#d4af37' }} />
                   <span className="text-[9px] uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.35)' }}>
                     GIA & IGI Certified Diamonds
                   </span>

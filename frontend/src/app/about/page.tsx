@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
 import { ShieldCheck, Gem, Compass, Sparkles } from 'lucide-react';
 
 const S = {
-  void: '#060812',
-  rose: '#D4706A',
-  cream: '#F0DFC8',
+  void: '#0b2626',
+  rose: '#d4af37',
+  cream: '#fef8f1',
   creamDim: 'rgba(219,191,136,0.6)',
-  borderFaint: '1px solid rgba(212,112,106,0.1)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.1)',
 };
 
 export default function AboutPage() {
@@ -156,7 +156,7 @@ export default function AboutPage() {
               >
                 <div
                   className="h-10 w-10 rounded-sm flex items-center justify-center"
-                  style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)' }}
+                  style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)' }}
                 >
                   <prop.icon className="h-4.5 w-4.5" style={{ color: S.rose }} />
                 </div>
@@ -179,7 +179,7 @@ export default function AboutPage() {
           transition={{ duration: 1 }}
           className="w-full text-center py-20 px-8 rounded-sm relative overflow-hidden"
           style={{
-            background: 'linear-gradient(135deg, rgba(13,18,40,0.8) 0%, rgba(6,8,18,0.95) 100%)',
+            background: 'linear-gradient(135deg, rgba(13,18,40,0.8) 0%, rgba(11, 38, 38,0.95) 100%)',
             border: S.borderFaint
           }}
         >

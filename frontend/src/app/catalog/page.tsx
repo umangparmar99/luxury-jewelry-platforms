@@ -54,8 +54,8 @@ export default function CatalogPage() {
 
   if (loading && !data) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#060812' }}>
-        <p className="text-[#F0DFC8] font-sans text-xs uppercase tracking-widest animate-pulse">Unlocking Catalog Vault...</p>
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0b2626' }}>
+        <p className="text-[#fef8f1] font-sans text-xs uppercase tracking-widest animate-pulse">Unlocking Catalog Vault...</p>
       </div>
     );
   }

@@ -362,15 +362,15 @@ export default function CartClient() {
 
   if (isLoading) {
     return (
-      <div className="w-full min-h-[60vh] flex flex-col items-center justify-center font-sans" style={{ backgroundColor: '#060812' }}>
-        <Loader2 className="h-10 w-10 animate-spin" style={{ color: '#D4706A' }} />
+      <div className="w-full min-h-[60vh] flex flex-col items-center justify-center font-sans" style={{ backgroundColor: '#0b2626' }}>
+        <Loader2 className="h-10 w-10 animate-spin" style={{ color: '#d4af37' }} />
         <span className="text-xs uppercase tracking-widest mt-4" style={{ color: 'rgba(219,191,136,0.4)' }}>Retrieving Bespoke Bag…</span>
       </div>
     );
   }
 
   return (
-    <div className="w-full min-h-screen pt-12 pb-28 font-sans relative" style={{ backgroundColor: '#060812', color: '#F0DFC8' }}>
+    <div className="w-full min-h-screen pt-12 pb-28 font-sans relative" style={{ backgroundColor: '#0b2626', color: '#fef8f1' }}>
       
       {/* Toast popup */}
       <AnimatePresence>
@@ -380,11 +380,11 @@ export default function CartClient() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
             className="fixed bottom-8 right-6 z-50 p-4 rounded-sm flex items-center gap-3"
-            style={{ background: 'rgba(10,14,30,0.97)', backdropFilter: 'blur(20px)', border: '1px solid rgba(212,112,106,0.3)', boxShadow: '0 16px 48px rgba(0,0,0,0.7)' }}
+            style={{ background: 'rgba(10,14,30,0.97)', backdropFilter: 'blur(20px)', border: '1px solid rgba(212, 175, 55,0.3)', boxShadow: '0 16px 48px rgba(0,0,0,0.7)' }}
           >
-            <Bookmark className="h-4 w-4 shrink-0" style={{ color: '#D4706A' }} />
+            <Bookmark className="h-4 w-4 shrink-0" style={{ color: '#d4af37' }} />
             <div className="text-xs">
-              <p className="font-semibold" style={{ color: '#F0DFC8' }}>Bespoke Bag Update</p>
+              <p className="font-semibold" style={{ color: '#fef8f1' }}>Bespoke Bag Update</p>
               <p className="mt-0.5" style={{ color: 'rgba(219,191,136,0.55)' }}>{toastMessage}</p>
             </div>
           </motion.div>
@@ -394,9 +394,9 @@ export default function CartClient() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Title */}
-        <div className="pb-8 mb-12" style={{ borderBottom: '1px solid rgba(212,112,106,0.08)' }}>
-          <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#D4706A' }}>Fine Jewelry</span>
-          <h1 className="font-serif text-3xl md:text-4xl font-light mt-2" style={{ color: '#F5E6D0' }}>Bespoke Bag</h1>
+        <div className="pb-8 mb-12" style={{ borderBottom: '1px solid rgba(212, 175, 55,0.08)' }}>
+          <span className="font-sans text-[10px] uppercase tracking-widest font-semibold" style={{ color: '#d4af37' }}>Fine Jewelry</span>
+          <h1 className="font-serif text-3xl md:text-4xl font-light mt-2" style={{ color: '#fef8f1' }}>Bespoke Bag</h1>
           <p className="font-sans text-[11px] mt-1.5 uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.4)' }}>
             Manage your bespoke configurations and secure appraisals
           </p>
@@ -404,8 +404,8 @@ export default function CartClient() {
 
         {cartItems.length === 0 ? (
           /* Empty bag view */
-          <div className="w-full text-center py-24 rounded-sm" style={{ border: '1px dashed rgba(212,112,106,0.15)' }}>
-            <ShoppingBag className="h-12 w-12 mx-auto mb-5 opacity-25" style={{ color: '#D4706A' }} />
+          <div className="w-full text-center py-24 rounded-sm" style={{ border: '1px dashed rgba(212, 175, 55,0.15)' }}>
+            <ShoppingBag className="h-12 w-12 mx-auto mb-5 opacity-25" style={{ color: '#d4af37' }} />
             <p className="font-serif text-xl font-light mb-2" style={{ color: 'rgba(219,191,136,0.5)' }}>Your Bespoke Bag is empty.</p>
             <p className="font-sans text-xs mb-7 max-w-sm mx-auto leading-relaxed" style={{ color: 'rgba(219,191,136,0.3)' }}>
               Explore our certified diamonds index or configure your own solitaire ring.
@@ -428,10 +428,10 @@ export default function CartClient() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, x: -100 }}
                     className="flex flex-col sm:flex-row gap-6 p-6 rounded-sm relative group transition-all duration-300"
-                    style={{ background: 'rgba(13,18,40,0.45)', border: '1px solid rgba(212,112,106,0.08)' }}
+                    style={{ background: 'rgba(13,18,40,0.45)', border: '1px solid rgba(212, 175, 55,0.08)' }}
                   >
                     {/* Item Image */}
-                    <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-sm" style={{ background: 'rgba(13,18,40,0.7)', border: '1px solid rgba(212,112,106,0.1)' }}>
+                    <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-sm" style={{ background: 'rgba(13,18,40,0.7)', border: '1px solid rgba(212, 175, 55,0.1)' }}>
                       <Image 
                         src={item.image || 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=400&auto=format&fit=crop'} 
                         alt={item.productName} 
@@ -443,7 +443,7 @@ export default function CartClient() {
                     {/* Metadata & Configurations */}
                     <div className="flex-grow flex flex-col justify-between">
                       <div className="flex flex-col gap-1 pr-6">
-                        <h3 className="font-serif text-sm font-light transition-colors duration-200" style={{ color: '#F0DFC8' }}>
+                        <h3 className="font-serif text-sm font-light transition-colors duration-200" style={{ color: '#fef8f1' }}>
                           <Link href={`/catalog/products/${item.slug}`}>{item.productName}</Link>
                         </h3>
                         <span className="text-[10px] uppercase tracking-wider font-mono" style={{ color: 'rgba(219,191,136,0.3)' }}>
@@ -454,20 +454,20 @@ export default function CartClient() {
                         <div className="flex flex-wrap gap-x-4 gap-y-1.5 mt-2 text-[10px] font-sans" style={{ color: 'rgba(219,191,136,0.45)' }}>
                           {item.selectedMetal && (
                             <span className="flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#D4706A' }} />
-                              Metal: <strong style={{ color: '#F0DFC8' }}>{metalLabels[item.selectedMetal]}</strong>
+                              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#d4af37' }} />
+                              Metal: <strong style={{ color: '#fef8f1' }}>{metalLabels[item.selectedMetal]}</strong>
                             </span>
                           )}
                           {item.selectedSize && (
                             <span className="flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#D4706A' }} />
-                              US Size: <strong style={{ color: '#F0DFC8' }}>{item.selectedSize}</strong>
+                              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#d4af37' }} />
+                              US Size: <strong style={{ color: '#fef8f1' }}>{item.selectedSize}</strong>
                             </span>
                           )}
                           {item.customEngraving && (
                             <span className="flex items-center gap-1.5">
-                              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#D4706A' }} />
-                              Engraving: <strong style={{ color: '#F0DFC8' }}>"{item.customEngraving}"</strong>
+                              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#d4af37' }} />
+                              Engraving: <strong style={{ color: '#fef8f1' }}>"{item.customEngraving}"</strong>
                             </span>
                           )}
                         </div>
@@ -475,23 +475,23 @@ export default function CartClient() {
 
                       {/* Quantity Selector & Secondary Actions */}
                       <div className="flex items-center justify-between mt-4">
-                        <div className="flex items-center rounded-sm" style={{ border: '1px solid rgba(212,112,106,0.15)', background: 'rgba(6,8,18,0.6)' }}>
+                        <div className="flex items-center rounded-sm" style={{ border: '1px solid rgba(212, 175, 55,0.15)', background: 'rgba(11, 38, 38,0.6)' }}>
                           <button
                             onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
                             className="px-2.5 py-1.5 transition-colors duration-200"
-                            style={{ color: 'rgba(212,112,106,0.6)' }}
-                            onMouseEnter={e => (e.currentTarget.style.color = '#F0DFC8')}
-                            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(212,112,106,0.6)')}
+                            style={{ color: 'rgba(212, 175, 55,0.6)' }}
+                            onMouseEnter={e => (e.currentTarget.style.color = '#fef8f1')}
+                            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(212, 175, 55,0.6)')}
                           >
                             <Minus className="h-3 w-3" />
                           </button>
-                          <span className="w-6 text-center text-xs font-bold" style={{ color: '#F0DFC8' }}>{item.quantity}</span>
+                          <span className="w-6 text-center text-xs font-bold" style={{ color: '#fef8f1' }}>{item.quantity}</span>
                           <button
                             onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
                             className="px-2.5 py-1.5 transition-colors duration-200"
-                            style={{ color: 'rgba(212,112,106,0.6)' }}
-                            onMouseEnter={e => (e.currentTarget.style.color = '#F0DFC8')}
-                            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(212,112,106,0.6)')}
+                            style={{ color: 'rgba(212, 175, 55,0.6)' }}
+                            onMouseEnter={e => (e.currentTarget.style.color = '#fef8f1')}
+                            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(212, 175, 55,0.6)')}
                           >
                             <Plus className="h-3 w-3" />
                           </button>
@@ -502,9 +502,9 @@ export default function CartClient() {
                           <button
                             onClick={() => handleSaveForLater(item)}
                             className="flex items-center gap-1.5 font-sans text-[10px] uppercase tracking-widest font-bold transition-colors duration-200"
-                            style={{ color: 'rgba(212,112,106,0.65)' }}
-                            onMouseEnter={e => (e.currentTarget.style.color = '#E68C72')}
-                            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(212,112,106,0.65)')}
+                            style={{ color: 'rgba(212, 175, 55,0.65)' }}
+                            onMouseEnter={e => (e.currentTarget.style.color = '#dfbe58')}
+                            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(212, 175, 55,0.65)')}
                           >
                             <Heart className="h-3.5 w-3.5" /> Save
                           </button>
@@ -541,8 +541,8 @@ export default function CartClient() {
             <div className="flex flex-col gap-6">
               
               {/* Calculations panel card */}
-              <div className="p-6 rounded-sm" style={{ background: 'rgba(13,18,40,0.6)', backdropFilter: 'blur(20px)', border: '1px solid rgba(212,112,106,0.12)', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}>
-                <h2 className="font-serif text-lg font-light pb-4 mb-6" style={{ color: '#F5E6D0', borderBottom: '1px solid rgba(212,112,106,0.08)' }}>
+              <div className="p-6 rounded-sm" style={{ background: 'rgba(13,18,40,0.6)', backdropFilter: 'blur(20px)', border: '1px solid rgba(212, 175, 55,0.12)', boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}>
+                <h2 className="font-serif text-lg font-light pb-4 mb-6" style={{ color: '#fef8f1', borderBottom: '1px solid rgba(212, 175, 55,0.08)' }}>
                   Order Summary
                 </h2>
 
@@ -551,14 +551,14 @@ export default function CartClient() {
                   {/* Subtotal */}
                   <div className="flex justify-between">
                     <span style={{ color: 'rgba(219,191,136,0.45)' }}>Subtotal</span>
-                    <span className="font-medium" style={{ color: '#F0DFC8' }}>
+                    <span className="font-medium" style={{ color: '#fef8f1' }}>
                       ${getSubtotal().toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </span>
                   </div>
 
                   {/* Coupon Discount */}
                   {activeCoupon && (
-                    <div className="flex justify-between font-semibold" style={{ color: '#D4706A' }}>
+                    <div className="flex justify-between font-semibold" style={{ color: '#d4af37' }}>
                       <span>Promo ({activeCoupon.code})</span>
                       <span>-${getDiscount().toLocaleString(undefined, { minimumFractionDigits: 2 })}</span>
                     </div>
@@ -570,7 +570,7 @@ export default function CartClient() {
                       Priority Insured Carrier
                       <HelpCircle className="h-3.5 w-3.5" style={{ color: 'rgba(219,191,136,0.25)' }} />
                     </span>
-                    <span className="font-medium" style={{ color: '#F0DFC8' }}>
+                    <span className="font-medium" style={{ color: '#fef8f1' }}>
                       {getShipping() === 0 ? 'Complimentary' : `$${getShipping().toFixed(2)}`}
                     </span>
                   </div>
@@ -578,15 +578,15 @@ export default function CartClient() {
                   {/* Taxes */}
                   <div className="flex justify-between">
                     <span style={{ color: 'rgba(219,191,136,0.45)' }}>Luxury Sales Tax (8.25%)</span>
-                    <span className="font-medium" style={{ color: '#F0DFC8' }}>
+                    <span className="font-medium" style={{ color: '#fef8f1' }}>
                       ${getTax().toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </span>
                   </div>
 
-                  <div className="my-2" style={{ height: '1px', background: 'rgba(212,112,106,0.08)' }} />
+                  <div className="my-2" style={{ height: '1px', background: 'rgba(212, 175, 55,0.08)' }} />
 
                   <div className="flex justify-between text-sm font-semibold">
-                    <span className="uppercase tracking-wider" style={{ color: '#F5E6D0' }}>Estimated Total</span>
+                    <span className="uppercase tracking-wider" style={{ color: '#fef8f1' }}>Estimated Total</span>
                     <span className="font-serif text-xl" style={{ color: '#DBBF88' }}>
                       ${getGrandTotal().toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </span>
@@ -594,32 +594,32 @@ export default function CartClient() {
                 </div>
 
                 {/* Coupon promo form */}
-                <form onSubmit={handleApplyCoupon} className="mt-7 pt-6 flex gap-2" style={{ borderTop: '1px solid rgba(212,112,106,0.08)' }}>
+                <form onSubmit={handleApplyCoupon} className="mt-7 pt-6 flex gap-2" style={{ borderTop: '1px solid rgba(212, 175, 55,0.08)' }}>
                   <div className="relative flex-grow">
-                    <Tag className="absolute left-3 top-2.5 h-3.5 w-3.5" style={{ color: 'rgba(212,112,106,0.35)' }} />
+                    <Tag className="absolute left-3 top-2.5 h-3.5 w-3.5" style={{ color: 'rgba(212, 175, 55,0.35)' }} />
                     <input
                       type="text"
                       placeholder="WELCOME10"
                       value={couponCode}
                       onChange={e => setCouponCode(e.target.value.toUpperCase())}
                       className="w-full py-2.5 pl-9 pr-2 rounded-sm text-xs outline-none uppercase tracking-widest font-mono transition-all duration-200"
-                      style={{ background: 'rgba(6,8,18,0.7)', border: '1px solid rgba(212,112,106,0.12)', color: '#F0DFC8' }}
-                      onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.4)')}
-                      onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.12)')}
+                      style={{ background: 'rgba(11, 38, 38,0.7)', border: '1px solid rgba(212, 175, 55,0.12)', color: '#fef8f1' }}
+                      onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.4)')}
+                      onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.12)')}
                     />
                   </div>
                   <button
                     type="submit"
                     disabled={isValidatingCoupon || !couponCode}
                     className="px-4 py-2 rounded-sm font-sans text-[10px] uppercase tracking-widest font-bold transition-all duration-200 disabled:opacity-20 shrink-0"
-                    style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)', color: '#D4706A' }}
+                    style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)', color: '#d4af37' }}
                   >
                     {isValidatingCoupon ? 'Checking…' : 'Apply'}
                   </button>
                 </form>
 
                 {couponError   && <p className="font-sans text-[10px] mt-2" style={{ color: '#FF8A8A' }}>{couponError}</p>}
-                {couponSuccess && <p className="font-sans text-[10px] mt-2" style={{ color: '#D4706A' }}>{couponSuccess}</p>}
+                {couponSuccess && <p className="font-sans text-[10px] mt-2" style={{ color: '#d4af37' }}>{couponSuccess}</p>}
 
                 {/* Proceed link button */}
                 <Link href="/checkout" className="btn-rose w-full mt-7 flex items-center justify-center gap-2">
@@ -629,13 +629,13 @@ export default function CartClient() {
               </div>
 
               {/* Secure Trust Assurances */}
-              <div className="flex flex-col gap-3 p-4 rounded-sm font-sans text-[11px] leading-relaxed" style={{ background: 'rgba(212,112,106,0.04)', border: '1px solid rgba(212,112,106,0.07)', color: 'rgba(219,191,136,0.45)' }}>
+              <div className="flex flex-col gap-3 p-4 rounded-sm font-sans text-[11px] leading-relaxed" style={{ background: 'rgba(212, 175, 55,0.04)', border: '1px solid rgba(212, 175, 55,0.07)', color: 'rgba(219,191,136,0.45)' }}>
                 <div className="flex items-start gap-2.5">
-                  <ShieldCheck className="h-4 w-4 shrink-0 mt-0.5" style={{ color: '#D4706A' }} />
+                  <ShieldCheck className="h-4 w-4 shrink-0 mt-0.5" style={{ color: '#d4af37' }} />
                   <p>Certified secure checkout. Insured Brink's transit with priority signature release on arrival.</p>
                 </div>
                 <div className="flex items-start gap-2.5">
-                  <Truck className="h-4 w-4 shrink-0 mt-0.5" style={{ color: '#D4706A' }} />
+                  <Truck className="h-4 w-4 shrink-0 mt-0.5" style={{ color: '#d4af37' }} />
                   <p>Complimentary resizing and GIA/IGI certification documents boxed with all orders.</p>
                 </div>
               </div>
@@ -646,10 +646,10 @@ export default function CartClient() {
 
         {/* SAVE FOR LATER LIST SECTION */}
         {savedItems.length > 0 && (
-          <section className="pt-20 mt-24" style={{ borderTop: '1px solid rgba(212,112,106,0.07)' }}>
+          <section className="pt-20 mt-24" style={{ borderTop: '1px solid rgba(212, 175, 55,0.07)' }}>
             <div className="mb-10">
-              <h2 className="font-serif text-2xl font-light flex items-center gap-2" style={{ color: '#F5E6D0' }}>
-                <Bookmark className="h-5 w-5" style={{ color: '#D4706A' }} /> Saved Design Settings
+              <h2 className="font-serif text-2xl font-light flex items-center gap-2" style={{ color: '#fef8f1' }}>
+                <Bookmark className="h-5 w-5" style={{ color: '#d4af37' }} /> Saved Design Settings
               </h2>
               <p className="font-sans text-[11px] mt-1.5 uppercase tracking-widest" style={{ color: 'rgba(219,191,136,0.4)' }}>
                 Review and move items back to your Bespoke Bag to checkout
@@ -658,8 +658,8 @@ export default function CartClient() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
               {savedItems.map((item) => (
-                <div key={item.id} className="group relative flex flex-col p-5 rounded-sm" style={{ background: 'rgba(13,18,40,0.4)', border: '1px solid rgba(212,112,106,0.08)' }}>
-                  <div className="relative h-48 w-full overflow-hidden rounded-sm" style={{ border: '1px solid rgba(212,112,106,0.1)' }}>
+                <div key={item.id} className="group relative flex flex-col p-5 rounded-sm" style={{ background: 'rgba(13,18,40,0.4)', border: '1px solid rgba(212, 175, 55,0.08)' }}>
+                  <div className="relative h-48 w-full overflow-hidden rounded-sm" style={{ border: '1px solid rgba(212, 175, 55,0.1)' }}>
                     <Image
                       src={item.image || 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=400&auto=format&fit=crop'}
                       alt={item.productName} fill className="object-cover"
@@ -668,7 +668,7 @@ export default function CartClient() {
                   </div>
 
                   <div className="mt-4 flex flex-col gap-1.5">
-                    <h3 className="font-serif text-sm font-light transition-colors duration-200" style={{ color: '#F0DFC8' }}>
+                    <h3 className="font-serif text-sm font-light transition-colors duration-200" style={{ color: '#fef8f1' }}>
                       <Link href={`/catalog/products/${item.slug}`}>{item.productName}</Link>
                     </h3>
                     <div className="flex items-center justify-between text-xs mt-1">
@@ -682,13 +682,13 @@ export default function CartClient() {
                       )}
                     </div>
 
-                    <div className="flex gap-3 pt-4 mt-2" style={{ borderTop: '1px solid rgba(212,112,106,0.07)' }}>
+                    <div className="flex gap-3 pt-4 mt-2" style={{ borderTop: '1px solid rgba(212, 175, 55,0.07)' }}>
                       <button
                         onClick={() => handleMoveToCart(item)}
                         className="flex-grow py-2 rounded-sm font-sans text-[10px] uppercase tracking-widest font-bold text-center transition-all duration-200"
-                        style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)', color: '#D4706A' }}
-                        onMouseEnter={e => (e.currentTarget.style.background = 'rgba(212,112,106,0.14)')}
-                        onMouseLeave={e => (e.currentTarget.style.background = 'rgba(212,112,106,0.08)')}
+                        style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)', color: '#d4af37' }}
+                        onMouseEnter={e => (e.currentTarget.style.background = 'rgba(212, 175, 55,0.14)')}
+                        onMouseLeave={e => (e.currentTarget.style.background = 'rgba(212, 175, 55,0.08)')}
                       >
                         Move To Bag
                       </button>

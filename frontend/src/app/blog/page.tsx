@@ -7,11 +7,11 @@ import { motion } from 'framer-motion';
 import { Bookmark, Send, Loader2, ArrowRight } from 'lucide-react';
 
 const S = {
-  void: '#060812',
-  rose: '#D4706A',
-  cream: '#F0DFC8',
+  void: '#0b2626',
+  rose: '#d4af37',
+  cream: '#fef8f1',
   creamDim: 'rgba(219,191,136,0.6)',
-  borderFaint: '1px solid rgba(212,112,106,0.1)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.1)',
 };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
@@ -107,7 +107,7 @@ export default function BlogListPage() {
             <p className="font-sans text-[9px] uppercase tracking-widest opacity-55">Unlocking Vault Journals...</p>
           </div>
         ) : blogs.length === 0 ? (
-          <div className="text-center py-20 border border-dashed rounded-sm" style={{ borderColor: 'rgba(212,112,106,0.15)' }}>
+          <div className="text-center py-20 border border-dashed rounded-sm" style={{ borderColor: 'rgba(212, 175, 55,0.15)' }}>
             <p className="font-serif text-lg tracking-wide text-creamDim">No journal publications found.</p>
           </div>
         ) : (
@@ -167,7 +167,7 @@ export default function BlogListPage() {
         <div
           className="mt-20 p-10 rounded-sm text-center relative overflow-hidden max-w-3xl mx-auto"
           style={{
-            background: 'linear-gradient(135deg, rgba(13,18,40,0.7) 0%, rgba(6,8,18,0.95) 100%)',
+            background: 'linear-gradient(135deg, rgba(13,18,40,0.7) 0%, rgba(11, 38, 38,0.95) 100%)',
             border: S.borderFaint
           }}
         >
@@ -185,7 +185,7 @@ export default function BlogListPage() {
                 className="flex items-center gap-2 px-4 py-3 rounded-sm w-full"
                 style={{
                   background: 'rgba(255,255,255,0.02)',
-                  border: '1px solid rgba(212,112,106,0.15)',
+                  border: '1px solid rgba(212, 175, 55,0.15)',
                 }}
               >
                 <input

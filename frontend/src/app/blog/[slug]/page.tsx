@@ -8,11 +8,11 @@ import { motion } from 'framer-motion';
 import { Loader2, ArrowLeft, Bookmark, Share2 } from 'lucide-react';
 
 const S = {
-  void: '#060812',
-  rose: '#D4706A',
-  cream: '#F0DFC8',
+  void: '#0b2626',
+  rose: '#d4af37',
+  cream: '#fef8f1',
   creamDim: 'rgba(219,191,136,0.6)',
-  borderFaint: '1px solid rgba(212,112,106,0.1)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.1)',
 };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api/v1';
@@ -103,7 +103,7 @@ export default function BlogDetailsPage() {
               Editorial ✦ {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Draft'}
             </span>
             <div className="flex gap-2">
-              <button className="p-2 rounded-sm" style={{ background: 'rgba(212,112,106,0.05)', border: S.borderFaint }} aria-label="Share">
+              <button className="p-2 rounded-sm" style={{ background: 'rgba(212, 175, 55,0.05)', border: S.borderFaint }} aria-label="Share">
                 <Share2 className="h-3.5 w-3.5" style={{ color: S.rose }} />
               </button>
             </div>
@@ -114,7 +114,7 @@ export default function BlogDetailsPage() {
           <p className="font-sans text-xs uppercase tracking-wider" style={{ color: S.creamDim }}>
             Written by {blog.authorName}
           </p>
-          <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, #D4706A, transparent)' }} />
+          <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, #d4af37, transparent)' }} />
         </div>
 
         {/* --- HERO IMAGE --- */}

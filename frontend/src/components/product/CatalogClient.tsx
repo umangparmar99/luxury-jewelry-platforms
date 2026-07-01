@@ -54,15 +54,15 @@ const sortOptions = [
 
 /* ── shared inline-style tokens ─────────────────────────────── */
 const S = {
-  void:        '#060812',
+  void:        '#0b2626',
   voidMid:     'rgba(13,18,40,0.6)',
-  rose:        '#D4706A',
-  roseHover:   '#E68C72',
-  cream:       '#F0DFC8',
+  rose:        '#d4af37',
+  roseHover:   '#dfbe58',
+  cream:       '#fef8f1',
   creamDim:    'rgba(219,191,136,0.55)',
   creamFaint:  'rgba(219,191,136,0.35)',
-  borderRose:  '1px solid rgba(212,112,106,0.12)',
-  borderFaint: '1px solid rgba(212,112,106,0.07)',
+  borderRose:  '1px solid rgba(212, 175, 55,0.12)',
+  borderFaint: '1px solid rgba(212, 175, 55,0.07)',
 };
 
 export default function CatalogClient({
@@ -195,7 +195,7 @@ export default function CatalogClient({
                   className="text-left pl-3 transition-colors font-sans"
                   style={{
                     color: searchParams.category === child.slug ? S.rose : 'rgba(219,191,136,0.28)',
-                    borderLeft: '1px solid rgba(212,112,106,0.12)',
+                    borderLeft: '1px solid rgba(212, 175, 55,0.12)',
                   }}
                 >
                   {child.name}
@@ -221,12 +221,12 @@ export default function CatalogClient({
               onChange={e => i === 0 ? setMinPrice(e.target.value) : setMaxPrice(e.target.value)}
               className="w-full px-3 py-2 rounded-sm text-center outline-none font-sans transition-all duration-200"
               style={{
-                background: 'rgba(6,8,18,0.7)',
+                background: 'rgba(11, 38, 38,0.7)',
                 border: S.borderRose,
                 color: S.cream,
               }}
-              onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.4)')}
-              onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.12)')}
+              onFocus={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.4)')}
+              onBlur={e  => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.12)')}
             />
           ))}
         </div>
@@ -234,12 +234,12 @@ export default function CatalogClient({
           onClick={() => updateQuery({ minPrice, maxPrice })}
           className="w-full mt-3 py-2 rounded-sm font-sans text-[10px] uppercase tracking-widest font-bold transition-all duration-200"
           style={{
-            background: 'rgba(212,112,106,0.08)',
-            border: '1px solid rgba(212,112,106,0.2)',
+            background: 'rgba(212, 175, 55,0.08)',
+            border: '1px solid rgba(212, 175, 55,0.2)',
             color: S.rose,
           }}
-          onMouseEnter={e => (e.currentTarget.style.background = 'rgba(212,112,106,0.14)')}
-          onMouseLeave={e => (e.currentTarget.style.background = 'rgba(212,112,106,0.08)')}
+          onMouseEnter={e => (e.currentTarget.style.background = 'rgba(212, 175, 55,0.14)')}
+          onMouseLeave={e => (e.currentTarget.style.background = 'rgba(212, 175, 55,0.08)')}
         >
           Apply Range
         </button>
@@ -263,11 +263,11 @@ export default function CatalogClient({
                 <span
                   className="h-4 w-4 rounded-sm shrink-0 flex items-center justify-center transition-all duration-200"
                   style={{
-                    background: checked ? '#D4706A' : 'transparent',
-                    border: checked ? '1px solid #D4706A' : '1px solid rgba(212,112,106,0.3)',
+                    background: checked ? '#d4af37' : 'transparent',
+                    border: checked ? '1px solid #d4af37' : '1px solid rgba(212, 175, 55,0.3)',
                   }}
                 >
-                  {checked && <Check className="h-2.5 w-2.5" style={{ color: '#060812', strokeWidth: 3 }} />}
+                  {checked && <Check className="h-2.5 w-2.5" style={{ color: '#0b2626', strokeWidth: 3 }} />}
                 </span>
                 {m.name}
               </button>
@@ -294,11 +294,11 @@ export default function CatalogClient({
                 <span
                   className="h-4 w-4 rounded-sm shrink-0 flex items-center justify-center transition-all duration-200"
                   style={{
-                    background: checked ? '#D4706A' : 'transparent',
-                    border: checked ? '1px solid #D4706A' : '1px solid rgba(212,112,106,0.3)',
+                    background: checked ? '#d4af37' : 'transparent',
+                    border: checked ? '1px solid #d4af37' : '1px solid rgba(212, 175, 55,0.3)',
                   }}
                 >
-                  {checked && <Check className="h-2.5 w-2.5" style={{ color: '#060812', strokeWidth: 3 }} />}
+                  {checked && <Check className="h-2.5 w-2.5" style={{ color: '#0b2626', strokeWidth: 3 }} />}
                 </span>
                 {s} Elements
               </button>
@@ -322,7 +322,7 @@ export default function CatalogClient({
             className="fixed bottom-8 right-6 z-[100] flex items-center gap-3 px-5 py-4 rounded-sm"
             style={{
               background: 'rgba(10,14,30,0.97)',
-              border: toastType === 'success' ? '1px solid rgba(212,112,106,0.3)' : '1px solid rgba(220,60,60,0.3)',
+              border: toastType === 'success' ? '1px solid rgba(212, 175, 55,0.3)' : '1px solid rgba(220,60,60,0.3)',
               boxShadow: '0 16px 48px rgba(0,0,0,0.7)',
               backdropFilter: 'blur(20px)',
             }}
@@ -343,7 +343,7 @@ export default function CatalogClient({
             <motion.div
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="fixed inset-0 z-50"
-              style={{ background: 'rgba(6,8,18,0.75)', backdropFilter: 'blur(8px)' }}
+              style={{ background: 'rgba(11, 38, 38,0.75)', backdropFilter: 'blur(8px)' }}
               onClick={() => setIsMobileFiltersOpen(false)}
             />
             <motion.div
@@ -353,7 +353,7 @@ export default function CatalogClient({
               style={{
                 background: 'rgba(8,11,24,0.98)',
                 backdropFilter: 'blur(30px)',
-                borderRight: '1px solid rgba(212,112,106,0.12)',
+                borderRight: '1px solid rgba(212, 175, 55,0.12)',
               }}
             >
               <div className="flex items-center justify-between mb-6">
@@ -390,7 +390,7 @@ export default function CatalogClient({
               className="flex items-center gap-3 px-4 py-3 rounded-sm w-full md:max-w-xs"
               style={{ background: 'rgba(13,18,40,0.5)', border: S.borderRose }}
             >
-              <Search className="h-3.5 w-3.5 shrink-0" style={{ color: 'rgba(212,112,106,0.5)' }} />
+              <Search className="h-3.5 w-3.5 shrink-0" style={{ color: 'rgba(212, 175, 55,0.5)' }} />
               <input
                 type="text"
                 placeholder="Search setting names…"
@@ -413,7 +413,7 @@ export default function CatalogClient({
           <button
             onClick={() => setIsMobileFiltersOpen(true)}
             className="lg:hidden flex items-center gap-2 px-4 py-2.5 rounded-sm font-sans text-xs uppercase tracking-widest font-bold transition-all duration-200"
-            style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)', color: S.rose }}
+            style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)', color: S.rose }}
           >
             <SlidersHorizontal className="h-3.5 w-3.5" /> Filters
           </button>
@@ -465,7 +465,7 @@ export default function CatalogClient({
                           className="flex items-center justify-between px-3 py-2.5 rounded-sm text-xs font-sans transition-all duration-150"
                           style={{
                             color: active ? S.cream : S.creamFaint,
-                            background: active ? 'rgba(212,112,106,0.08)' : 'transparent',
+                            background: active ? 'rgba(212, 175, 55,0.08)' : 'transparent',
                           }}
                           onMouseEnter={e => !active && (e.currentTarget.style.background = 'rgba(255,255,255,0.03)')}
                           onMouseLeave={e => !active && (e.currentTarget.style.background = 'transparent')}
@@ -508,7 +508,7 @@ export default function CatalogClient({
               /* Empty state */
               <div
                 className="w-full text-center py-24 rounded-sm"
-                style={{ border: '1px dashed rgba(212,112,106,0.15)' }}
+                style={{ border: '1px dashed rgba(212, 175, 55,0.15)' }}
               >
                 <Gem className="h-10 w-10 mx-auto mb-4 opacity-30" style={{ color: S.rose }} />
                 <p className="font-serif text-xl font-light mb-2" style={{ color: 'rgba(219,191,136,0.5)' }}>
@@ -520,7 +520,7 @@ export default function CatalogClient({
                 <button
                   onClick={resetAllFilters}
                   className="px-6 py-3 rounded-sm font-sans text-[10px] uppercase tracking-widest font-bold transition-all duration-200"
-                  style={{ background: 'rgba(212,112,106,0.08)', border: '1px solid rgba(212,112,106,0.2)', color: S.rose }}
+                  style={{ background: 'rgba(212, 175, 55,0.08)', border: '1px solid rgba(212, 175, 55,0.2)', color: S.rose }}
                 >
                   Reset Filters
                 </button>
@@ -552,8 +552,8 @@ export default function CatalogClient({
                       <div
                         className="relative h-[260px] overflow-hidden rounded-sm transition-all duration-300"
                         style={{
-                          border: isHovered ? '1px solid rgba(212,112,106,0.3)' : '1px solid rgba(212,112,106,0.08)',
-                          boxShadow: isHovered ? '0 12px 40px rgba(212,112,106,0.12)' : 'none',
+                          border: isHovered ? '1px solid rgba(212, 175, 55,0.3)' : '1px solid rgba(212, 175, 55,0.08)',
+                          boxShadow: isHovered ? '0 12px 40px rgba(212, 175, 55,0.12)' : 'none',
                         }}
                       >
                         <Image
@@ -566,7 +566,7 @@ export default function CatalogClient({
                         {prod.isCustomizable && (
                           <span
                             className="absolute top-3 left-3 font-sans text-[8px] uppercase tracking-widest font-bold px-2.5 py-1 rounded-sm"
-                            style={{ background: '#D4706A', color: '#060812' }}
+                            style={{ background: '#d4af37', color: '#0b2626' }}
                           >
                             Bespoke
                           </span>
@@ -578,16 +578,16 @@ export default function CatalogClient({
                           onClick={e => handleToggleWishlist(e, prod, displayImage)}
                           className="absolute top-3 right-3 h-7 w-7 rounded-full flex items-center justify-center transition-all duration-200 z-10"
                           style={{
-                            background: isWishlisted ? 'rgba(212,112,106,0.9)' : 'rgba(6,8,18,0.65)',
-                            border: '1px solid rgba(212,112,106,0.3)',
+                            background: isWishlisted ? 'rgba(212, 175, 55,0.9)' : 'rgba(11, 38, 38,0.65)',
+                            border: '1px solid rgba(212, 175, 55,0.3)',
                             backdropFilter: 'blur(8px)',
                           }}
                         >
                           <Heart
                             className="h-3 w-3"
                             style={{
-                              color:  isWishlisted ? '#060812' : '#D4706A',
-                              fill:   isWishlisted ? '#060812' : 'transparent',
+                              color:  isWishlisted ? '#0b2626' : '#d4af37',
+                              fill:   isWishlisted ? '#0b2626' : 'transparent',
                             }}
                           />
                         </motion.button>
@@ -601,14 +601,14 @@ export default function CatalogClient({
                               exit={{ opacity: 0, y: 8 }}
                               transition={{ duration: 0.18 }}
                               className="absolute bottom-0 left-0 right-0 p-3 z-10"
-                              style={{ background: 'linear-gradient(to top, rgba(6,8,18,0.95), transparent)' }}
+                              style={{ background: 'linear-gradient(to top, rgba(11, 38, 38,0.95), transparent)' }}
                             >
                               <Link
                                 href={`/catalog/products/${prod.slug}`}
                                 className="block w-full text-center py-2.5 rounded-sm font-sans text-[10px] uppercase tracking-widest font-bold transition-all duration-200"
                                 style={{
-                                  background: 'rgba(212,112,106,0.12)',
-                                  border: '1px solid rgba(212,112,106,0.35)',
+                                  background: 'rgba(212, 175, 55,0.12)',
+                                  border: '1px solid rgba(212, 175, 55,0.35)',
                                   color: S.roseHover,
                                 }}
                               >
@@ -621,7 +621,7 @@ export default function CatalogClient({
 
                       {/* Metadata */}
                       <div className="mt-4 flex flex-col gap-1">
-                        <span className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(212,112,106,0.65)' }}>
+                        <span className="font-sans text-[9px] uppercase tracking-widest" style={{ color: 'rgba(212, 175, 55,0.65)' }}>
                           {prod.category.name}
                         </span>
                         <h3 className="font-serif text-sm font-light leading-snug transition-colors duration-200" style={{ color: isHovered ? S.roseHover : S.cream }}>
@@ -658,9 +658,9 @@ export default function CatalogClient({
                   disabled={initialPagination.page === 1 || isPending}
                   onClick={() => updateQuery({ page: String(initialPagination.page - 1) })}
                   className="px-5 py-2.5 rounded-sm uppercase tracking-widest font-bold transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
-                  style={{ border: '1px solid rgba(212,112,106,0.2)', color: S.creamFaint }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.5)')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.2)')}
+                  style={{ border: '1px solid rgba(212, 175, 55,0.2)', color: S.creamFaint }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.5)')}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.2)')}
                 >
                   ← Previous
                 </button>
@@ -675,9 +675,9 @@ export default function CatalogClient({
                   disabled={initialPagination.page === initialPagination.totalPages || isPending}
                   onClick={() => updateQuery({ page: String(initialPagination.page + 1) })}
                   className="px-5 py-2.5 rounded-sm uppercase tracking-widest font-bold transition-all duration-200 disabled:opacity-20 disabled:pointer-events-none"
-                  style={{ border: '1px solid rgba(212,112,106,0.2)', color: S.creamFaint }}
-                  onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.5)')}
-                  onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(212,112,106,0.2)')}
+                  style={{ border: '1px solid rgba(212, 175, 55,0.2)', color: S.creamFaint }}
+                  onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.5)')}
+                  onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(212, 175, 55,0.2)')}
                 >
                   Next →
                 </button>

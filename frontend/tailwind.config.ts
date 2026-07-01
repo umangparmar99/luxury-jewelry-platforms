@@ -20,43 +20,43 @@ const config: Config = {
         // ── NEW ULTRA-PREMIUM PALETTE ─────────────────────────────────────
         // Deep Space Midnight (backgrounds)
         void: {
-          50:  '#ECEEF5',
-          100: '#C5CAE0',
-          200: '#9EA5CB',
-          300: '#7781B5',
-          400: '#505DA0',
-          500: '#2A3A7A',
-          600: '#1E2D6A',
-          700: '#13205A',
-          800: '#0B1540',
-          900: '#060812',   // Ultra-deep base
-          950: '#030509',
+          50:  '#e7f3f3',
+          100: '#c5e2e2',
+          200: '#a0d0d0',
+          300: '#77bdbd',
+          400: '#50a7a7',
+          500: '#144747',   // Primary Teal from beyondcarat
+          600: '#113e3e',
+          700: '#0e3333',
+          800: '#0b2626',   // Deep Teal background
+          900: '#081d1d',   // Ultra-deep base teal
+          950: '#051212',
         },
-        // Luminous Rose Gold (primary brand accent)
+        // Luxury Gold (primary brand accent from beyondcarat)
         rose: {
-          50:  '#FDF5F3',
-          100: '#FAE6E1',
-          200: '#F5C8BC',
-          300: '#EEAA97',
-          400: '#E68C72',
-          500: '#D4706A',   // Luminous Rose Gold
-          600: '#BE5550',
-          700: '#A33A37',
-          800: '#872020',
-          900: '#6B0808',
+          50:  '#fcf8dd',
+          100: '#f8eebb',
+          200: '#f1de9a',
+          300: '#e9ce79',
+          400: '#dfbe58',
+          500: '#d4af37',   // Luxury Gold
+          600: '#bfa030',
+          700: '#a68925',
+          800: '#8c721c',
+          900: '#6e5912',
         },
-        // Champagne Cream (for body text, soft highlights)
+        // Warm Ivory Cream (from beyondcarat)
         cream: {
-          50:  '#FDFAF6',
-          100: '#FAF3E8',
-          200: '#F5E6D0',
-          300: '#EDD9B8',
-          400: '#E5CCA0',
-          500: '#DBBF88',
-          600: '#C9A870',
-          700: '#B08D50',
-          800: '#8E6F30',
-          900: '#6C5010',
+          50:  '#ffffff',
+          100: '#fffcf8',
+          200: '#fef8f1',   // Warm Cream
+          300: '#f6ebe0',
+          400: '#eddccc',
+          500: '#dbbfaa',
+          600: '#caa38e',
+          700: '#b78772',
+          800: '#9d6756',
+          900: '#7e473b',
         },
         // Lilac Violet (interactive / highlight glow)
         violet: {
@@ -131,13 +131,13 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial':     'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':      'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'gradient-rose-gold':  'linear-gradient(135deg, #E68C72 0%, #D4706A 40%, #BE5550 100%)',
-        'gradient-void':       'linear-gradient(135deg, #060812 0%, #0D1228 50%, #060812 100%)',
-        'gradient-shimmer':    'linear-gradient(90deg, transparent 0%, rgba(212,112,106,0.15) 50%, transparent 100%)',
+        'gradient-rose-gold':  'linear-gradient(135deg, #dfbe58 0%, #d4af37 40%, #bfa030 100%)',
+        'gradient-void':       'linear-gradient(135deg, #081d1d 0%, #114747 50%, #081d1d 100%)',
+        'gradient-shimmer':    'linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.15) 50%, transparent 100%)',
       },
       boxShadow: {
-        'rose-glow':    '0 0 30px rgba(212,112,106,0.35), 0 0 60px rgba(212,112,106,0.15)',
-        'rose-glow-sm': '0 0 12px rgba(212,112,106,0.25)',
+        'rose-glow':    '0 0 30px rgba(212,175,55,0.35), 0 0 60px rgba(212,175,55,0.15)',
+        'rose-glow-sm': '0 0 12px rgba(212,175,55,0.25)',
         'violet-glow':  '0 0 30px rgba(151,128,255,0.3), 0 0 60px rgba(151,128,255,0.1)',
         'cream-glow':   '0 0 20px rgba(219,191,136,0.2)',
         'deep':         '0 25px 60px rgba(0,0,0,0.8)',
@@ -165,8 +165,8 @@ const config: Config = {
           '50%':      { transform: 'translateY(-8px)' },
         },
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 20px rgba(212,112,106,0.2)' },
-          '50%':      { boxShadow: '0 0 40px rgba(212,112,106,0.5)' },
+          '0%, 100%': { boxShadow: '0 0 20px rgba(212,175,55,0.2)' },
+          '50%':      { boxShadow: '0 0 40px rgba(212,175,55,0.5)' },
         },
         'spin-slow': {
           from: { transform: 'rotate(0deg)' },
