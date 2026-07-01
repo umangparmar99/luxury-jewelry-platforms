@@ -38,12 +38,11 @@ luxury-jewelry-platform/
 │       ├── routes/           # Routing directories
 │       ├── services/         # Core business database services
 │       └── utils/            # Shared utilities (slugify, ApiResponse, cache)
-├── frontend/                 # Next.js Next app
+├── frontend/                 # Vite-based React SPA frontend
 │   └── src/
 │       ├── app/              # Routes pages (shop, blog, admin, dashboard, etc.)
 │       ├── components/       # Layout components (Header, Footer, clients)
 │       └── context/          # React contexts (AuthContext)
-├── docker-compose.yml        # Docker orchestration settings
 └── README.md                 # Detailed documentation guides
 ```
 
@@ -53,8 +52,8 @@ luxury-jewelry-platform/
 
 ### Prerequisites
 - Node.js (version 20 or higher)
-- MySQL database instance running locally or via Docker container
-- npm or pnpm workspaces environment
+- MySQL database instance running locally or on a cloud service
+- npm workspaces environment
 
 ### 1. Environment Configurations
 Clone `.env.example` in the backend folder and fill in the values:
@@ -93,18 +92,59 @@ npm run dev
 
 ---
 
-## Docker Support (Recommended for Quick Validation)
+## Production Build & Deployment Guide (Without Docker)
 
-Containerize the whole platform (MySQL database instance included) using Docker Compose:
+To compile and execute the platform on a live production server, follow the guide below.
 
-1. Build and boot the services:
-   ```bash
-   docker-compose up --build
-   ```
-2. Once booted, the database migrations run automatically. Seed parameters using:
-   ```bash
-   docker exec -it luxury-jewelry-backend npx prisma db seed
-   ```
+### 1. Database Configuration
+Ensure you have a hosted MySQL instance (e.g. AWS RDS, GCP Cloud SQL, or a standalone VPS instance).
+Modify the environment configuration inside `backend/.env`:
+```env
+DATABASE_URL="mysql://username:password@hostname:3306/database_name"
+```
+
+### 2. Apply Database Schema & Seed Data
+Before starting the backend, update the database schema and seed the baseline configuration data:
+```bash
+# Push schema changes to the live database
+npm run db:push
+
+# Seed default roles, products and the Administrator user
+npm run seed --workspace=backend
+```
+
+### 3. Build the Platform
+Run the workspace build script from the root directory to generate production bundles for both backend and frontend:
+```bash
+npm run build
+```
+- **Backend**: runs `prisma generate` to compile Prisma client models and compiles TypeScript source files to JavaScript in `backend/dist`.
+- **Frontend**: builds and bundles static assets to `frontend/dist` using Vite.
+
+### 4. Run in Production
+
+#### A. Running the Backend Server
+It is highly recommended to run the backend server using a process manager like **PM2** to ensure auto-restart and zero downtime:
+```bash
+# Install PM2 globally if not already installed
+npm install -g pm2
+
+# Start the backend server
+pm2 start backend/dist/server.js --name "luxury-jewelry-backend"
+```
+Or start directly with node/npm:
+```bash
+npm run start:backend
+```
+
+#### B. Serving the Frontend App
+Since the frontend is a static single-page React app, the production output in `frontend/dist` can be:
+- Deployed directly to static hosting services like **Vercel** (using the included `vercel.json`), **Netlify**, or **Cloudflare Pages**.
+- Served on a VPS using **Nginx** or **Apache**.
+- Served via Node using the `serve` library:
+  ```bash
+  npx serve -s frontend/dist -l 3000
+  ```
 
 ---
 
